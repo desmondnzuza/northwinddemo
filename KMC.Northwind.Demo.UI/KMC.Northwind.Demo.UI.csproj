@@ -251,7 +251,6 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\category\controllers\categoryController.js" />
-    <Content Include="app\category\views\categoryList.html" />
     <Content Include="app\category\views\categoryMain.html" />
     <Content Include="app\category\views\edit.html" />
     <Content Include="app\category\views\list.html" />
