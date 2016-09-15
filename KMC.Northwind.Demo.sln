@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMC.Northwind.Demo.API", "KMC.Northwind.Demo.API\KMC.Northwind.Demo.API.csproj", "{1ED78F0A-BBA1-41D7-AC92-AB0F3B15077F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMC.Northwind.Demo.UI", "KMC.Northwind.Demo.UI\KMC.Northwind.Demo.UI.csproj", "{8A847BD9-7ACE-42A0-8A3A-E1B229994D77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMC.Northwind.Demo.Tests.Integration", "KMC.Northwind.Demo.Tests.Integration\KMC.Northwind.Demo.Tests.Integration.csproj", "{18419CC5-66F5-4BF6-BC90-EEE4F897AD3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMC.Northwind.Demo.Tests.Unit", "KMC.Northwind.Demo.Tests.Unit\KMC.Northwind.Demo.Tests.Unit.csproj", "{3F605B7E-A37E-472D-BDB7-5FE7BEF50DC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMC.Northwind.Demo.Tests.Common", "KMC.Northwind.Demo.Tests.Common\KMC.Northwind.Demo.Tests.Common.csproj", "{83EE81B5-9035-429D-82CD-4C4DA5DC2A1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMC.Northwind.Demo.Core", "KMC.Northwind.Demo.Core\KMC.Northwind.Demo.Core.csproj", "{EB33F44B-155E-4FA7-848F-FBA82BE06627}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1ED78F0A-BBA1-41D7-AC92-AB0F3B15077F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ED78F0A-BBA1-41D7-AC92-AB0F3B15077F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ED78F0A-BBA1-41D7-AC92-AB0F3B15077F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ED78F0A-BBA1-41D7-AC92-AB0F3B15077F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A847BD9-7ACE-42A0-8A3A-E1B229994D77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A847BD9-7ACE-42A0-8A3A-E1B229994D77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A847BD9-7ACE-42A0-8A3A-E1B229994D77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A847BD9-7ACE-42A0-8A3A-E1B229994D77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18419CC5-66F5-4BF6-BC90-EEE4F897AD3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18419CC5-66F5-4BF6-BC90-EEE4F897AD3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18419CC5-66F5-4BF6-BC90-EEE4F897AD3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18419CC5-66F5-4BF6-BC90-EEE4F897AD3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F605B7E-A37E-472D-BDB7-5FE7BEF50DC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F605B7E-A37E-472D-BDB7-5FE7BEF50DC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F605B7E-A37E-472D-BDB7-5FE7BEF50DC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F605B7E-A37E-472D-BDB7-5FE7BEF50DC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83EE81B5-9035-429D-82CD-4C4DA5DC2A1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83EE81B5-9035-429D-82CD-4C4DA5DC2A1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83EE81B5-9035-429D-82CD-4C4DA5DC2A1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83EE81B5-9035-429D-82CD-4C4DA5DC2A1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB33F44B-155E-4FA7-848F-FBA82BE06627}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB33F44B-155E-4FA7-848F-FBA82BE06627}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB33F44B-155E-4FA7-848F-FBA82BE06627}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB33F44B-155E-4FA7-848F-FBA82BE06627}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
