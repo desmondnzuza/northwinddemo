@@ -66,6 +66,10 @@
       <Project>{52e35127-7297-4529-a879-80ef9da8e26a}</Project>
       <Name>KMC.Northwind.Demo.SQL.Repository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\KMC.Northwind.Demo.Tests.Common\KMC.Northwind.Demo.Tests.Common.csproj">
+      <Project>{83EE81B5-9035-429D-82CD-4C4DA5DC2A1C}</Project>
+      <Name>KMC.Northwind.Demo.Tests.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

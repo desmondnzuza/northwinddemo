@@ -1,34 +1,115 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CoreModel = KMC.Northwind.Demo.Core.Model;
+using DbModel = KMC.Northwind.Demo.SQL.Repository.POCO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CoreModel = KMC.Northwind.Demo.Core.Model;
-using SQLPOCO = KMC.Northwind.Demo.SQL.Repository.POCO;
 
 namespace KMC.Northwind.Demo.SQL.Repository.Helpers
 {
     internal static class ModelExtenstion
     {
-        internal static SQLPOCO.Category ToDatabaseCategory(this CoreModel.Category category)
+        internal static DbModel.Category ToDbModelCategory(this CoreModel.Category category)
         {
-            return new POCO.Category
+            return new DbModel.Category
             {
                 CategoryId = category.Id,
                 CategoryName = category.Name,
                 Description = category.Description,
-                Picture = category.Picture
+                Picture = category.Picture,
+
+                Products = (category.Products != null && category.Products.Any()) ? 
+                                        category.Products.Select(x => x.ToDbProduct()).ToArray() : 
+                                        new DbModel.Product[] { }
             };
         }
 
-        internal static CoreModel.Category ToModelCategory(this SQLPOCO.Category category)
+        internal static CoreModel.Category ToCoreModelCategory(this DbModel.Category category)
         {
             return new CoreModel.Category
             {
                 Id = category.CategoryId,
                 Name = category.CategoryName,
                 Description = category.Description,
-                Picture = category.Picture
+                Picture = category.Picture,
+
+                Products = (category.Products != null && category.Products.Any()) ?
+                                        category.Products.Select(x => x.ToCoreModelProduct()).ToArray() :
+                                        new CoreModel.Product[] { }
+            };
+        }
+
+        internal static CoreModel.Product ToCoreModelProduct(this DbModel.Product product)
+        {
+            return new CoreModel.Product
+            {
+                Id = product.ProductId,
+                Name = product.ProductName,
+                QuantityPerUnit = product.QuantityPerUnit,
+                UnitPrice = product.UnitPrice,
+                UnitsInStock = product.UnitsInStock,
+                ReorderLevel = product.ReorderLevel,
+                IsDiscontinued = product.Discontinued,
+                CategoryId = product.CategoryId,
+                SupplierId = product.SupplierId,
+            };
+        }
+
+        internal static DbModel.Product ToDbProduct(this CoreModel.Product product)
+        {
+            return new DbModel.Product
+            {
+                ProductId = product.Id,
+                ProductName = product.Name,
+                QuantityPerUnit = product.QuantityPerUnit,
+                UnitPrice = product.UnitPrice,
+                UnitsInStock = product.UnitsInStock,
+                ReorderLevel = product.ReorderLevel,
+                Discontinued = product.IsDiscontinued,
+                CategoryId = product.CategoryId,
+                SupplierId = product.SupplierId,
+            };
+        }
+
+        internal static CoreModel.Supplier ToCoreModelSupplier(this DbModel.Supplier supplier)
+        {
+            return new CoreModel.Supplier
+            {
+                Id = supplier.SupplierId,
+                CompanyName = supplier.CompanyName,
+                ContactName = supplier.ContactName,
+                ContactTitle = supplier.ContactTitle,
+                Address = supplier.Address,
+                City = supplier.City,
+                Region = supplier.Region,
+                PostalCode = supplier.PostalCode,
+                Country = supplier.Country,
+                Phone = supplier.Phone,
+                Fax = supplier.Fax,
+                HomePage = supplier.HomePage,
+                
+                Products = (supplier.Products != null && supplier.Products.Any()) ? supplier.Products.Select(x => x.ToCoreModelProduct()).ToArray() :
+                                        new CoreModel.Product[] { }
+            };
+        }
+
+        internal static DbModel.Supplier ToDbSupplier(this CoreModel.Supplier supplier)
+        {
+            return new DbModel.Supplier
+            {
+                SupplierId = supplier.Id,
+                CompanyName = supplier.CompanyName,
+                ContactName = supplier.ContactName,
+                ContactTitle = supplier.ContactTitle,
+                Address = supplier.Address,
+                City = supplier.City,
+                Region = supplier.Region,
+                PostalCode = supplier.PostalCode,
+                Country = supplier.Country,
+                Phone = supplier.Phone,
+                Fax = supplier.Fax,
+                HomePage = supplier.HomePage,
+                
+                Products = (supplier.Products != null && supplier.Products.Any()) ?
+                                        supplier.Products.Select(x => x.ToDbProduct()).ToArray() :
+                                        new DbModel.Product[] { }
             };
         }
     }

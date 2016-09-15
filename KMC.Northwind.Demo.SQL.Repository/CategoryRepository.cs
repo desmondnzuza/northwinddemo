@@ -13,7 +13,7 @@ namespace KMC.Northwind.Demo.SQL.Repository
         {
             using (var ctx = new SQLPOCO.NorthwindDbContext())
             {
-                ctx.Categories.Add(newCategory.ToDatabaseCategory());
+                ctx.Categories.Add(newCategory.ToDbModelCategory());
 
                 ctx.SaveChanges();
             }
@@ -24,6 +24,7 @@ namespace KMC.Northwind.Demo.SQL.Repository
             using (var ctx = new SQLPOCO.NorthwindDbContext())
             {
                 var dbResults = ctx.Categories
+                    .Include(x => x.Products)
                     //.Take(10)
                     //.Skip(0)
                     .Where(c =>
@@ -34,7 +35,7 @@ namespace KMC.Northwind.Demo.SQL.Repository
                      .ToArray();
 
                 var targetList = dbResults
-                      .Select(x => x.ToModelCategory())
+                      .Select(x => x.ToCoreModelCategory())
                       .ToArray();
 
                 return targetList;
@@ -52,7 +53,7 @@ namespace KMC.Northwind.Demo.SQL.Repository
 
                 if(dbCategory != null)
                 {
-                    return dbCategory.ToModelCategory();
+                    return dbCategory.ToCoreModelCategory();
                 }
             }
 
@@ -63,7 +64,7 @@ namespace KMC.Northwind.Demo.SQL.Repository
         {
             using (var ctx = new SQLPOCO.NorthwindDbContext())
             {
-                var dbCategory = categoryToRemove.ToDatabaseCategory();
+                var dbCategory = categoryToRemove.ToDbModelCategory();
 
                 ctx.Categories.Remove(dbCategory);
 
@@ -75,7 +76,7 @@ namespace KMC.Northwind.Demo.SQL.Repository
         {
             using (var ctx = new SQLPOCO.NorthwindDbContext())
             {
-                var dbCategory = categoryToUpdate.ToDatabaseCategory();
+                var dbCategory = categoryToUpdate.ToDbModelCategory();
 
                 ctx.Categories.Attach(dbCategory);
                 ctx.Entry(dbCategory).State = EntityState.Modified;
