@@ -40,7 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interface\BusinessLogic\ICategoryOperation.cs" />
+    <Compile Include="Interface\BusinessLogic\IProductOperation.cs" />
     <Compile Include="Interface\BusinessLogic\ISupplierOperation.cs" />
+    <Compile Include="Interface\Repository\ICategoryRepository.cs" />
+    <Compile Include="Interface\Repository\IProductRepository.cs" />
     <Compile Include="Interface\Repository\ISupplierRepository.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Product.cs" />

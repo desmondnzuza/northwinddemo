@@ -10,14 +10,14 @@ namespace KMC.Northwind.Demo.Tests.Unit.BusinessLogicTest
     [TestClass]
     public class SuppliersOperationTests
     {
-        private Mock<ISupplierRepository> _mocedSuppliersRepository;        
+        private Mock<ISupplierRepository> _mockedSuppliersRepository;        
         private ISupplierOperation _sut;
 
         [TestInitialize]
         public void SetUp()
         {
-            _mocedSuppliersRepository = new Mock<ISupplierRepository>();
-            _sut = new SupplierOperation(_mocedSuppliersRepository.Object);
+            _mockedSuppliersRepository = new Mock<ISupplierRepository>();
+            _sut = new SupplierOperation(_mockedSuppliersRepository.Object);
         }
 
         [TestMethod]
@@ -31,7 +31,7 @@ namespace KMC.Northwind.Demo.Tests.Unit.BusinessLogicTest
             };
             _sut.FindSuppliers(criteria);
 
-            _mocedSuppliersRepository.Verify(r => r.FindSuppliers(criteria), Times.Once);
+            _mockedSuppliersRepository.Verify(r => r.FindSuppliers(criteria), Times.Once);
         }
 
         [TestMethod]
@@ -40,7 +40,7 @@ namespace KMC.Northwind.Demo.Tests.Unit.BusinessLogicTest
             var someNumber = 15478;
             _sut.FindSupplierById(someNumber);
 
-            _mocedSuppliersRepository.Verify(r => r.FindSupplierById(someNumber), Times.Once);
+            _mockedSuppliersRepository.Verify(r => r.FindSupplierById(someNumber), Times.Once);
         }
 
         [TestMethod]
@@ -49,7 +49,7 @@ namespace KMC.Northwind.Demo.Tests.Unit.BusinessLogicTest
             var dummySupplier = new Supplier();
             _sut.CreateSupplier(dummySupplier);
 
-            _mocedSuppliersRepository.Verify(r => r.CreateSupplier(dummySupplier), Times.Once);
+            _mockedSuppliersRepository.Verify(r => r.CreateSupplier(dummySupplier), Times.Once);
         }
 
         [TestMethod]
@@ -58,7 +58,7 @@ namespace KMC.Northwind.Demo.Tests.Unit.BusinessLogicTest
             var dummySupplier = new Supplier();
             _sut.UpdateSupplier(dummySupplier);
 
-            _mocedSuppliersRepository.Verify(r => r.UpdateSupplier(dummySupplier), Times.Once);
+            _mockedSuppliersRepository.Verify(r => r.UpdateSupplier(dummySupplier), Times.Once);
         }
 
         [TestMethod]
@@ -67,7 +67,7 @@ namespace KMC.Northwind.Demo.Tests.Unit.BusinessLogicTest
             var dummySupplier = new Supplier();
             _sut.RemoveSupplier(dummySupplier);
 
-            _mocedSuppliersRepository.Verify(r => r.RemoveSupplier(dummySupplier), Times.Once);
+            _mockedSuppliersRepository.Verify(r => r.RemoveSupplier(dummySupplier), Times.Once);
         }
     }
 }
