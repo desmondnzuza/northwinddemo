@@ -30,7 +30,7 @@
             views: {
                 '': {
                     templateUrl: '../app/category/views/list.html',
-                    controller: 'categoryCtrl as vm'
+                    controller: 'categoryListCtrl as vm'
                 }
             }
         })
@@ -39,7 +39,7 @@
             views: {
                 '': {
                     templateUrl: '../app/category/views/list.html',
-                    controller: 'categoryCtrl as vm'
+                    controller: 'categoryListCtrl as vm'
                 }
             }
         })
@@ -48,7 +48,7 @@
             views: {
                 '': {
                     templateUrl: '../app/category/views/new.html',
-                    controller: 'categoryCtrl as vm'
+                    controller: 'categoryNewCtrl as vm'
                 }
             }
         })
@@ -57,7 +57,7 @@
             views: {
                 '': {
                     templateUrl: '../app/category/views/edit.html',
-                    controller: 'categoryCtrl as vm'
+                    controller: 'categoryEditCtrl as vm'
                 }
             }
         })
