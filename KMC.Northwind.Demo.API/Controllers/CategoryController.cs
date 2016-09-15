@@ -13,26 +13,31 @@ namespace KMC.Northwind.Demo.API.Controllers
             _operation = operation;
         }
 
+        [HttpGet]
         public Category[] FindCategories(SearchCriteria criteria)
         {
             return _operation.FindCategories(criteria);
         }
 
+        [HttpGet]
         public Category FindCategoryById(int categoryId)
         {
             return _operation.FindCategoryById(categoryId);
         }
 
+        [HttpPost]
         public void CreateCategory(Category newCategory)
         {
             _operation.CreateCategory(newCategory);
         }
 
+        [HttpPost]
         public void UpdateCategory(Category categoryToUpdate)
         {
             _operation.UpdateCategory(categoryToUpdate);
         }
 
+        [HttpPost]
         public void RemoveCategory(Category categoryToRemove)
         {
             _operation.RemoveCategory(categoryToRemove);
