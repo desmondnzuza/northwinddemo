@@ -23,6 +23,41 @@ namespace KMC.Northwind.Demo.UI
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            var prerequisiteBundle = new ScriptBundle("~/bundles/angularprerequisite").Include(
+                "~/assets/js/jquery-2.1.1.min.js",
+                "~/assets/js/jquery.signalR.min.js",
+                "~/Scripts/jquery.validate*"
+                ).Include(
+                "~/Scripts/bootstrap.js",
+                "~/Scripts/respond.js"
+                ).Include(
+                "~/Scripts/angular.js",
+                "~/Scripts/angular-ui-router.js",
+                "~/assets/ui.bootstrap.custom/ui-bootstrap-custom-tpls-0.14.3.js",
+                "~/assets/js/toastr.js",
+                "~/assets/js/moment.js",
+                "~/assets/js/angular-moment.js"
+                );
+
+            var chartsBundle = new ScriptBundle("~/bundles/charts").Include(
+               "~/assets/js/highcharts.min.js",
+               "~/assets/js/drilldown.min.js",
+               "~/app/common/directives/highcharts-ng.js"
+               );
+
+            var appBundle = new ScriptBundle("~/bundles/app").Include(
+                "~/app/app.js",
+                "~/app/route/routerConfig.js")
+                .Include(
+                "~/app/category/controllers/*.js",
+                "~/app/product/controllers/*.js",
+                "~/app/report/controllers/*.js",
+                "~/app/supplier/controllers/*.js");
+
+            bundles.Add(prerequisiteBundle);
+            bundles.Add(chartsBundle);
+            bundles.Add(appBundle);
         }
     }
 }

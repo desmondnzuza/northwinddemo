@@ -235,6 +235,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NorthwindController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -248,7 +249,42 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\app.js" />
+    <Content Include="app\category\controllers\categoryController.js" />
+    <Content Include="app\category\views\categoryList.html" />
+    <Content Include="app\category\views\categoryMain.html" />
+    <Content Include="app\category\views\edit.html" />
+    <Content Include="app\category\views\list.html" />
+    <Content Include="app\category\views\new.html" />
+    <Content Include="app\common\directives\highcharts-ng.js" />
+    <Content Include="app\common\services\categoryService.js" />
+    <Content Include="app\common\services\productService.js" />
+    <Content Include="app\common\services\suppliertService.js" />
+    <Content Include="app\product\controllers\productController.js" />
+    <Content Include="app\product\views\edit.html" />
+    <Content Include="app\product\views\list.html" />
+    <Content Include="app\product\views\new.html" />
+    <Content Include="app\product\views\productsMain.html" />
+    <Content Include="app\report\controllers\ordersReportController.js" />
+    <Content Include="app\report\views\ordersReport.html" />
+    <Content Include="app\route\routerConfig.js" />
+    <Content Include="app\supplier\controllers\supplierController.js" />
+    <Content Include="app\supplier\views\edit.html" />
+    <Content Include="app\supplier\views\list.html" />
+    <Content Include="app\supplier\views\new.html" />
+    <Content Include="app\supplier\views\supplierMain.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="assets\js\angular-moment.js" />
+    <Content Include="assets\js\drilldown.min.js" />
+    <Content Include="assets\js\highcharts.min.js" />
+    <Content Include="assets\js\jquery-2.1.1.min.js" />
+    <Content Include="assets\js\jquery.signalR.min.js" />
+    <Content Include="assets\js\moment.js" />
+    <Content Include="assets\js\toastr.js" />
+    <Content Include="assets\ui.bootstrap.custom\ui-bootstrap-custom-0.14.3.js" />
+    <Content Include="assets\ui.bootstrap.custom\ui-bootstrap-custom-0.14.3.min.js" />
+    <Content Include="assets\ui.bootstrap.custom\ui-bootstrap-custom-tpls-0.14.3.js" />
+    <Content Include="assets\ui.bootstrap.custom\ui-bootstrap-custom-tpls-0.14.3.min.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -256,6 +292,11 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-ui-router.js" />
+    <Content Include="Scripts\angular-ui-router.min.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -280,6 +321,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\angular.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -289,6 +331,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Web.config" />
@@ -306,6 +352,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Northwind\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

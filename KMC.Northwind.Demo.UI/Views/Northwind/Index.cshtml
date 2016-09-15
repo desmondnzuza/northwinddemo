@@ -1,0 +1,13 @@
+﻿<div ng-app="app">
+    <div class="container">
+        <br />
+        <div ui-view="">
+        </div>
+    </div>
+</div><h1>hello:</h1>
+<script>
+    var apiUrl = '@ViewBag.ApiUrl';
+</script>
+@Scripts.Render("~/bundles/angularprerequisite")
+@Scripts.Render("~/bundles/charts")
+@Scripts.Render("~/bundles/app")
