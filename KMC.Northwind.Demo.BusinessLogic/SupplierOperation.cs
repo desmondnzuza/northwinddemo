@@ -6,35 +6,45 @@ namespace KMC.Northwind.Demo.BusinessLogic
 {
     public class SupplierOperation : ISupplierOperation
     {
-        private readonly ISupplierRepository _repo;
-        public SupplierOperation(ISupplierRepository repository)
+        private readonly ISupplierRepository _supplierRepo;
+        private readonly IProductRepository _productRepo;
+
+        public SupplierOperation(
+            ISupplierRepository supplierRepository,
+            IProductRepository productRepository)
         {
-            _repo = repository;
+            _supplierRepo = supplierRepository;
+            _productRepo = productRepository;
         }
 
         public Supplier FindSupplierById(int supplierId)
         {
-            return _repo.FindSupplierById(supplierId);
+            return _supplierRepo.FindSupplierById(supplierId);
         }
 
         public Supplier[] FindSuppliers(SearchCriteria criteria)
         {
-            return _repo.FindSuppliers(criteria);
+            return _supplierRepo.FindSuppliers(criteria);
         }
 
         public void UpdateSupplier(Supplier supplierToUpdate)
         {
-            _repo.UpdateSupplier(supplierToUpdate);
+            _supplierRepo.UpdateSupplier(supplierToUpdate);
         }
 
         public void RemoveSupplier(Supplier supplierToRemove)
         {
-            _repo.RemoveSupplier(supplierToRemove);
+            _supplierRepo.RemoveSupplier(supplierToRemove);
         }
 
         public void CreateSupplier(Supplier newSupplier)
         {
-            _repo.CreateSupplier(newSupplier);
+            _supplierRepo.CreateSupplier(newSupplier);
+        }
+
+        public Product[] FindAvailableProducts()
+        {
+            return _productRepo.FindAll();
         }
     }
 }

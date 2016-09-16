@@ -10,14 +10,20 @@ namespace KMC.Northwind.Demo.Tests.Unit.BusinessLogicTest
     [TestClass]
     public class SuppliersOperationTests
     {
-        private Mock<ISupplierRepository> _mockedSuppliersRepository;        
+        private Mock<ISupplierRepository> _mockedSuppliersRepository;
+        private Mock<IProductRepository> _mockedProductsRepository;
+
         private ISupplierOperation _sut;
 
         [TestInitialize]
         public void SetUp()
         {
             _mockedSuppliersRepository = new Mock<ISupplierRepository>();
-            _sut = new SupplierOperation(_mockedSuppliersRepository.Object);
+            _mockedProductsRepository = new Mock<IProductRepository>();
+
+            _sut = new SupplierOperation(
+                _mockedSuppliersRepository.Object,
+                _mockedProductsRepository.Object);
         }
 
         [TestMethod]
@@ -68,6 +74,14 @@ namespace KMC.Northwind.Demo.Tests.Unit.BusinessLogicTest
             _sut.RemoveSupplier(dummySupplier);
 
             _mockedSuppliersRepository.Verify(r => r.RemoveSupplier(dummySupplier), Times.Once);
+        }
+
+        [TestMethod]
+        public void SupplierOperationTests_WhenFindingAvailableProducts_Expect_ProductRepositoryCallForFindAll_ToBeMade()
+        {
+            _sut.FindAvailableProducts();
+
+            _mockedProductsRepository.Verify(r => r.FindAll(), Times.Once);
         }
     }
 }
