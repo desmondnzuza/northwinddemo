@@ -29,8 +29,8 @@ namespace KMC.Northwind.Demo.SQL.Repository
                     //.Skip(0)
                     .Where(c =>
                         (c.CategoryName.Contains(criteria.SearchTerm) ||
-                            c.Description.Contains(criteria.SearchTerm) /*||
-                            string.IsNullOrWhiteSpace(criteria.SearchTerm)*/)
+                            c.Description.Contains(criteria.SearchTerm
+                            ) || criteria.SearchTerm == null)               //TODO: handle this better
                             )
                      .ToArray();
 

@@ -13,8 +13,8 @@ namespace KMC.Northwind.Demo.API.Controllers
             _operation = operation;
         }
 
-        [HttpGet]
-        public Category[] FindCategories(SearchCriteria criteria)
+        [HttpPost]
+        public Category[] FindCategories([FromBody]SearchCriteria criteria)
         {
             return _operation.FindCategories(criteria);
         }

@@ -62,14 +62,11 @@
             },
             resolve: {
                 categoryToInspect: [
-                    //'categoryService',
+                    'categoryService',
                     '$stateParams',
-                    function ($stateParams) { //(categoryService, $stateParams) {
-                        //var ruleSetId = $stateParams.rulesetId;
-                        //return rulesService.findRuleSetById(ruleSetId);
+                    function (categoryService, $stateParams) {
                         var categoryId = $stateParams.categoryId;
-                        var dummy = {id: categoryId, name:"test"};
-                        return  dummy;
+                        return categoryService.findCategoryById(categoryId);
                     }
                 ],
             }

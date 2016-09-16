@@ -55,7 +55,9 @@ namespace KMC.Northwind.Demo.UI
                 "~/app/category/controllers/*.js",
                 "~/app/product/controllers/*.js",
                 "~/app/report/controllers/*.js",
-                "~/app/supplier/controllers/*.js");
+                "~/app/supplier/controllers/*.js")
+                .Include(
+                "~/app/common/services/*.js");
 
             bundles.Add(prerequisiteBundle);
             bundles.Add(chartsBundle);
