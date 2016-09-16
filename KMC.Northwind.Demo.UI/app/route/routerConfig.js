@@ -158,7 +158,7 @@
             }
         })
         .state('supplierManager.edit', {
-            url: '/edit/supplierId',
+            url: '/edit/:supplierId',
             views: {
                 '': {
                     templateUrl: '../app/supplier/views/edit.html',

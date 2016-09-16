@@ -1,3 +1,78 @@
-﻿<h1>edit</h1>
-supplier edit view says [{{vm.test}}]
-
+﻿<form class="form-horizontal" style="padding-top:10px; width:97%" name="supplierForm" ng-submit="vm.save(supplierForm.$valid)" novalidate>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            Edit
+        </div>
+        <div class="panel-body">
+            <div class="form-group" ng-class="{ 'has-error' : supplierForm.supplierName.$invalid && !supplierForm.supplierName.$pristine }">
+                <label for="supplierName" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="supplierName" ng-model="vm.selectedItem.companyName" placeholder="Name (required)" required />
+                    <p ng-show="supplierForm.supplierName.$invalid && !supplierForm.supplierName.$pristine" class="help-block">Name is required.</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="supplierContactName" class="col-sm-2 control-label">Contact Name</label>
+                <div class="col-sm-10">
+                    <textarea type="text" cols="40" rows="5" class="form-control" name="supplierContactName" ng-model="vm.selectedItem.contactName" placeholder="Contact Name"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ruleSets" class="col-sm-2 control-label">Products</label>
+                <div class="col-sm-10">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Assigned</th>
+                                <th>&nbsp;</th>
+                                <th>Available</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td width="44%">
+                                <select class="form-control"
+                                        size="10"
+                                        name="assignedProducts"
+                                        id="assignedProducts"
+                                        multiple="multiple"
+                                        ng-options="product as product.name for product in vm.assignedProducts"
+                                        ng-model="vm.selectedAssignedProducts"></select>
+                            </td>
+                            <td width="2%">
+                                <div class="btn-group-vertical">
+                                    <button type="button"
+                                            class="btn btn-primary"
+                                            ng-click="vm.assignSelectedProducts()">
+                                        <<
+                                    </button>
+                                    <button type="button"
+                                            class="btn btn-primary"
+                                            ng-click="vm.removeAssignedProducts()">
+                                        >>
+                                    </button>
+                                </div>
+                            </td>
+                            <td width="44%">
+                                <select class="form-control"
+                                        size="10"
+                                        name="availabeProducts"
+                                        id="availabeProducts"
+                                        multiple="multiple"
+                                        ng-options="product as product.name for product in vm.availableProducts"
+                                        ng-model="vm.selectedAvailableProducts"></select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10 text-right">
+                    <button type="submit" class="btn btn-primary" ng-disabled="(supplierForm.$invalid || supplierForm.$pristine)">Save</button>
+                    <button type="button" class="btn btn-warning" ng-click="vm.cancel()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

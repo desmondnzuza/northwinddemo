@@ -44,7 +44,7 @@ namespace KMC.Northwind.Demo.API.Controllers
         }
 
         [HttpPost]
-        public void RemoveProduct(Supplier supplierToRemove)
+        public void RemoveSupplier(Supplier supplierToRemove)
         {
             _operation.RemoveSupplier(supplierToRemove);
         }
