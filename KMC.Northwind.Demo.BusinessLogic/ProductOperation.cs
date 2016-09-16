@@ -1,4 +1,5 @@
-﻿using KMC.Northwind.Demo.Core.Interface.BusinessLogic;
+﻿using System;
+using KMC.Northwind.Demo.Core.Interface.BusinessLogic;
 using KMC.Northwind.Demo.Core.Interface.Repository;
 using KMC.Northwind.Demo.Core.Model;
 
@@ -7,10 +8,18 @@ namespace KMC.Northwind.Demo.BusinessLogic
     public class ProductOperation : IProductOperation
     {
         private readonly IProductRepository _repo;
+        private readonly ICategoryRepository _categoryRepo;
+        private readonly ISupplierRepository _supplierRepo;
 
-        public ProductOperation(IProductRepository repository)
+        public ProductOperation(
+            IProductRepository repository,
+            ICategoryRepository categoryRepository,
+            ISupplierRepository supplierRepository)
         {
             _repo = repository;
+            _categoryRepo = categoryRepository;
+            _supplierRepo = supplierRepository;
+
         }
 
         public void CreateProduct(Product newProduct)
@@ -36,6 +45,16 @@ namespace KMC.Northwind.Demo.BusinessLogic
         public void UpdateProduct(Product productToUpdate)
         {
             _repo.UpdateProduct(productToUpdate);
+        }
+
+        public Category[] FindAvailableCategories()
+        {
+            return _categoryRepo.FindAll();
+        }
+
+        public Supplier[] FindAvailableSuppliers()
+        {
+            return _supplierRepo.FindAll();
         }
     }
 }

@@ -11,13 +11,22 @@ namespace KMC.Northwind.Demo.Tests.Unit.BusinessLogicTest
     public class ProductOperationTests
     {
         private Mock<IProductRepository> _mockedProductRepository;
+        private Mock<ICategoryRepository> _mockedCategoryRepository;
+        private Mock<ISupplierRepository> _mockedSupplierRepository;
+
         private IProductOperation _sut;
 
         [TestInitialize]
         public void SetUp()
         {
             _mockedProductRepository = new Mock<IProductRepository>();
-            _sut = new ProductOperation(_mockedProductRepository.Object);
+            _mockedCategoryRepository = new Mock<ICategoryRepository>();
+            _mockedSupplierRepository = new Mock<ISupplierRepository>();
+
+            _sut = new ProductOperation(
+                _mockedProductRepository.Object,
+                _mockedCategoryRepository.Object,
+                _mockedSupplierRepository.Object);
         }
 
         [TestMethod]
@@ -68,6 +77,22 @@ namespace KMC.Northwind.Demo.Tests.Unit.BusinessLogicTest
             _sut.RemoveProduct(dummyProduct);
 
             _mockedProductRepository.Verify(r => r.RemoveProduct(dummyProduct), Times.Once);
+        }
+
+        [TestMethod]
+        public void ProductOperationTests_WhenFindingAvailableCategories_Expect_CategoryRepositoryCallForFindAll_ToBeMade()
+        {
+            _sut.FindAvailableCategories();
+
+            _mockedCategoryRepository.Verify(r => r.FindAll(), Times.Once);
+        }
+
+        [TestMethod]
+        public void ProductOperationTests_WhenFindingAvailableSuppliers_Expect_SupplierRepositoryCallForFindAll_ToBeMade()
+        {
+            _sut.FindAvailableSuppliers();
+
+            _mockedSupplierRepository.Verify(r => r.FindAll(), Times.Once);
         }
     }
 }
