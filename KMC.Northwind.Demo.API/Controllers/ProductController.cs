@@ -38,7 +38,7 @@ namespace KMC.Northwind.Demo.API.Controllers
         }
 
         [HttpPost]
-        public void CreateCategory(Product newProduct)
+        public void CreateProduct(Product newProduct)
         {
             _operation.CreateProduct(newProduct);
         }

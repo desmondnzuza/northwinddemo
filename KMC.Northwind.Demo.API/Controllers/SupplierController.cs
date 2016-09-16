@@ -4,7 +4,7 @@ using System.Web.Http;
 
 namespace KMC.Northwind.Demo.API.Controllers
 {
-    public class SupplierController
+    public class SupplierController : ApiController
     {
         private readonly ISupplierOperation _operation;
 
@@ -23,6 +23,12 @@ namespace KMC.Northwind.Demo.API.Controllers
         public Supplier FindSupplierById(int SupplierId)
         {
             return _operation.FindSupplierById(SupplierId);
+        }
+
+        [HttpGet]
+        public Product[] FindAvailableProducts()
+        {
+            return _operation.FindAvailableProducts();
         }
 
         [HttpPost]

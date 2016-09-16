@@ -23,7 +23,8 @@ namespace KMC.Northwind.Demo.UI
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/ui-grid.min.css"));
+                      "~/Content/ui-grid.min.css",
+                      "~/Content/toastr.css"));
 
             var prerequisiteBundle = new ScriptBundle("~/bundles/angularprerequisite").Include(
                 "~/assets/js/jquery-2.1.1.min.js",
