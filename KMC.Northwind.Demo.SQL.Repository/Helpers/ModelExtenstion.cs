@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace KMC.Northwind.Demo.SQL.Repository.Helpers
 {
-    internal static class ModelExtenstion
+    public static class ModelExtenstion
     {
-        internal static DbModel.Category ToDbModelCategory(this CoreModel.Category category)
+        public static DbModel.Category ToDbModelCategory(this CoreModel.Category category)
         {
             return new DbModel.Category
             {
@@ -21,7 +21,7 @@ namespace KMC.Northwind.Demo.SQL.Repository.Helpers
             };
         }
 
-        internal static CoreModel.Category ToCoreModelCategory(this DbModel.Category category)
+        public static CoreModel.Category ToCoreModelCategory(this DbModel.Category category)
         {
             return new CoreModel.Category
             {
@@ -36,7 +36,7 @@ namespace KMC.Northwind.Demo.SQL.Repository.Helpers
             };
         }
 
-        internal static CoreModel.Product ToCoreModelProduct(this DbModel.Product product)
+        public static CoreModel.Product ToCoreModelProduct(this DbModel.Product product)
         {
             return new CoreModel.Product
             {
@@ -52,7 +52,7 @@ namespace KMC.Northwind.Demo.SQL.Repository.Helpers
             };
         }
 
-        internal static DbModel.Product ToDbProduct(this CoreModel.Product product)
+        public static DbModel.Product ToDbProduct(this CoreModel.Product product)
         {
             return new DbModel.Product
             {
@@ -68,7 +68,7 @@ namespace KMC.Northwind.Demo.SQL.Repository.Helpers
             };
         }
 
-        internal static CoreModel.Supplier ToCoreModelSupplier(this DbModel.Supplier supplier)
+        public static CoreModel.Supplier ToCoreModelSupplier(this DbModel.Supplier supplier)
         {
             return new CoreModel.Supplier
             {
@@ -90,7 +90,7 @@ namespace KMC.Northwind.Demo.SQL.Repository.Helpers
             };
         }
 
-        internal static DbModel.Supplier ToDbSupplier(this CoreModel.Supplier supplier)
+        public static DbModel.Supplier ToDbSupplier(this CoreModel.Supplier supplier)
         {
             return new DbModel.Supplier
             {

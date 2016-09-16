@@ -10,6 +10,26 @@
 
         vm.selectedItem = categoryToInspect;
 
+        vm.save = function (isValid) {
+            if (isValid) {
+                //debugger;
+                vm.selectedItem.products = vm.assignedProducts;
+
+                console.log('about to save');
+                console.log(vm.selectedItem);
+
+                categoryService.editCategory(vm.selectedItem)
+                    .then(function (results) {
+                        toastr.success("Save Successful");
+                    }, function (err) {
+                        toastr.error("An error occured when trying to update set");
+                    })
+                    .finally(function () {
+                        $state.go('categoryManager.list');
+                    });
+            }
+        };
+
         vm.cancel = function () {
             $state.go('categoryManager.list');
         };
@@ -62,6 +82,6 @@
                 }
             }
         };
-
+       
     }]);
 })();

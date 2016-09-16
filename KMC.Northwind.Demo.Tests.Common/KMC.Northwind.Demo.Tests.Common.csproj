@@ -51,10 +51,15 @@
   <ItemGroup>
     <Compile Include="Builders\CategoryIdBuilder.cs" />
     <Compile Include="Helpers\CategoryHelper.cs" />
+    <Compile Include="Helpers\ProductHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\KMC.Northwind.Demo.Core\KMC.Northwind.Demo.Core.csproj">
+      <Project>{eb33f44b-155e-4fa7-848f-fba82be06627}</Project>
+      <Name>KMC.Northwind.Demo.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KMC.Northwind.Demo.SQL.Repository\KMC.Northwind.Demo.SQL.Repository.csproj">
       <Project>{52e35127-7297-4529-a879-80ef9da8e26a}</Project>
       <Name>KMC.Northwind.Demo.SQL.Repository</Name>

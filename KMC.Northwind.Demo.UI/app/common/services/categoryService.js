@@ -33,6 +33,14 @@
             });
         };
 
+        categoryService.editCategory = function (categoryToUpdate) {
+            var params = categoryToUpdate;
+
+            return $http.post(serviceBaseUrl + "UpdateCategory", params).then(function (results) {
+                return results;
+            });
+        }
+
 
         return categoryService;
     }]);

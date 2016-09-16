@@ -106,5 +106,28 @@ namespace KMC.Northwind.Demo.Tests.Integration.BusinessLogicTest
             var dbResult = CategoryHelper.FindRecordId(_categoryId);
             dbResult.ShouldBeNull();
         }
+
+        [TestMethod]
+        public void CategoryOperationTest_WhenUpdatingCategoryAfterModifyingProducts_Expect_CategoryToHaveNewProducts()
+        {
+            var name = string.Format("UP_{0}", StringHelper.GenerateRandomNumber());
+
+            var dummyProducts = ProductHelper.FindTopProducts(2);
+
+            var categoryToUpdate = new Category
+            {
+                Id = _categoryId,
+                Name = name,
+                Description = "Testing to see if can Update record",
+                Products = dummyProducts
+            };
+
+            _sut.UpdateCategory(categoryToUpdate);
+
+            var dbResult = CategoryHelper.FindRecordByName(name);
+            dbResult.ShouldNotBeNull();
+
+            dbResult.Products.ShouldNotBeEmpty();
+        }
     }
 }

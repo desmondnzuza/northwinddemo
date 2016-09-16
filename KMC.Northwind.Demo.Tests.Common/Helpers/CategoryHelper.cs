@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Data.Entity;
 using KMC.Northwind.Demo.SQL.Repository.POCO;
 
 namespace KMC.Northwind.Demo.Tests.Common.Helpers
@@ -12,6 +13,9 @@ namespace KMC.Northwind.Demo.Tests.Common.Helpers
                 var categoryToDelete = ctx.Categories.First(c => c.CategoryId == categoryId);
                 if(categoryToDelete != null)
                 {
+                    foreach (var dbProduct in categoryToDelete.Products.ToArray())                        
+                        ctx.Products.Remove(dbProduct);
+
                     ctx.Categories.Remove(categoryToDelete);
                     ctx.SaveChanges();
                 }
@@ -23,8 +27,8 @@ namespace KMC.Northwind.Demo.Tests.Common.Helpers
             using (var ctx = new NorthwindDbContext())
             {
                 return ctx.Categories
-                    .Where(c => c.CategoryName == name)
-                    .FirstOrDefault();
+                       .Include(x => x.Products)
+                       .Single(c => c.CategoryName == name);
             }
         }
 

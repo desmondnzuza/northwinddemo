@@ -1,6 +1,7 @@
 ﻿using KMC.Northwind.Demo.Core.Interface.Repository;
 using KMC.Northwind.Demo.Core.Model;
 using KMC.Northwind.Demo.SQL.Repository.Helpers;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using SQLPOCO = KMC.Northwind.Demo.SQL.Repository.POCO;
@@ -34,11 +35,9 @@ namespace KMC.Northwind.Demo.SQL.Repository
                             )
                      .ToArray();
 
-                var targetList = dbResults
+                return dbResults
                       .Select(x => x.ToCoreModelCategory())
                       .ToArray();
-
-                return targetList;
 
             }
         }
@@ -76,10 +75,26 @@ namespace KMC.Northwind.Demo.SQL.Repository
         {
             using (var ctx = new SQLPOCO.NorthwindDbContext())
             {
-                var dbCategory = categoryToUpdate.ToDbModelCategory();
+                var dbNewCategory = categoryToUpdate.ToDbModelCategory();
 
-                ctx.Categories.Attach(dbCategory);
-                ctx.Entry(dbCategory).State = EntityState.Modified;
+                var dbFreshCategory = ctx.Categories
+                       .Include(x => x.Products)
+                       .Single(c => c.CategoryId == dbNewCategory.CategoryId);
+
+                ctx.Entry(dbFreshCategory).CurrentValues.SetValues(dbNewCategory);
+
+                foreach (var dbProduct in dbFreshCategory.Products.ToArray())
+                    if (!dbNewCategory.Products.Any(s => s.ProductId == dbProduct.ProductId))
+                        ctx.Products.Remove(dbProduct);
+
+                foreach (var newProduct in dbNewCategory.Products)
+                {
+                    var dbProduct = dbFreshCategory.Products.SingleOrDefault(s => s.ProductId == newProduct.ProductId);
+                    if (dbProduct != null)
+                        ctx.Entry(dbProduct).CurrentValues.SetValues(newProduct);
+                    else
+                        dbFreshCategory.Products.Add(newProduct);
+                }
 
                 ctx.SaveChanges();
             }
