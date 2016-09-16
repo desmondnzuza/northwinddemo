@@ -7,15 +7,14 @@
             <div class="form-group" ng-class="{ 'has-error' : categoryForm.categoryName.$invalid && !categoryForm.categoryName.$pristine }">
                 <label for="categoryName" class="col-sm-2 control-label">Name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="categoryName" ng-model="vm.selectedItem.name" placeholder="Name (required)" />
+                    <input type="text" class="form-control" name="categoryName" ng-model="vm.selectedItem.name" placeholder="Name (required)" required />
                     <p ng-show="categoryForm.categoryName.$invalid && !categoryForm.categoryName.$pristine" class="help-block">Name is required.</p>
                 </div>
             </div> 
-            <div class="form-group" ng-class="{ 'has-error' : categoryForm.categoryName.$invalid && !categoryForm.categoryName.$pristine }">
+            <div class="form-group">
                 <label for="categoryDescription" class="col-sm-2 control-label">Description</label>
                 <div class="col-sm-10">
-                    <input type="text" cols="40" rows="5" class="form-control" name="categoryDescription" ng-model="vm.selectedItem.description" placeholder="Description (required)" />
-                    <p ng-show="categoryForm.categoryDescription.$invalid && !categoryForm.categoryDescription.$pristine" class="help-block">Description is required.</p>
+                    <input type="text" cols="40" rows="5" class="form-control" name="categoryDescription" ng-model="vm.selectedItem.description" placeholder="Description" />                    
                 </div>
             </div>
             <div class="form-group" ng-show="false"> <!--Not yet functional-->
@@ -24,7 +23,7 @@
                     <img ng-src="data:image/jpeg;base64,{{vm.selectedItem.picture}}" />
                 </div>
             </div>           
-            <div class="form-group" ng-class="{ 'has-error' : (vm.assignedProducts && vm.assignedProducts.length === 0) }">
+            <div class="form-group">
                 <label for="ruleSets" class="col-sm-2 control-label">Products</label>
                 <div class="col-sm-10">
                     <table class="table">

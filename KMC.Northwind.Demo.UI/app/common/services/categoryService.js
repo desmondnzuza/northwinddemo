@@ -39,7 +39,23 @@
             return $http.post(serviceBaseUrl + "UpdateCategory", params).then(function (results) {
                 return results;
             });
-        }
+        };
+
+        categoryService.createCategory = function (categoryToAdd) {
+            var params = categoryToAdd;
+
+            return $http.post(serviceBaseUrl + "CreateCategory", params).then(function (results) {
+                return results;
+            });
+        };
+
+        categoryService.removeCategory = function (categoryToDelete) {
+            var params = categoryToDelete;
+
+            return $http.post(serviceBaseUrl + "RemoveCategory", params).then(function (results) {
+                return results;
+            });
+        };
 
 
         return categoryService;

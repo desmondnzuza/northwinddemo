@@ -63,11 +63,18 @@ namespace KMC.Northwind.Demo.SQL.Repository
         {
             using (var ctx = new SQLPOCO.NorthwindDbContext())
             {
-                var dbCategory = categoryToRemove.ToDbModelCategory();
+                var categoryToDelete = ctx.Categories
+                    .Include(x => x.Products)
+                    .FirstOrDefault(c => c.CategoryId == categoryToRemove.Id);
 
-                ctx.Categories.Remove(dbCategory);
+                if (categoryToDelete != null)
+                {
+                    foreach (var dbProduct in categoryToDelete.Products.ToArray())
+                        ctx.Entry<SQLPOCO.Product>(dbProduct).State = EntityState.Modified;
 
-                ctx.SaveChanges();
+                    ctx.Categories.Remove(categoryToDelete);
+                    ctx.SaveChanges();
+                }
             }
         }
 

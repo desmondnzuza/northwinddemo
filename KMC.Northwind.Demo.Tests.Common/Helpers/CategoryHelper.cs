@@ -10,7 +10,7 @@ namespace KMC.Northwind.Demo.Tests.Common.Helpers
         {
             using (var ctx = new NorthwindDbContext())
             {
-                var categoryToDelete = ctx.Categories.First(c => c.CategoryId == categoryId);
+                var categoryToDelete = ctx.Categories.FirstOrDefault(c => c.CategoryId == categoryId);
                 if(categoryToDelete != null)
                 {
                     foreach (var dbProduct in categoryToDelete.Products.ToArray())                        

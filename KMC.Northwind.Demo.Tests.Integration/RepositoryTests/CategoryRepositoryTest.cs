@@ -94,11 +94,16 @@ namespace KMC.Northwind.Demo.Tests.Integration.BusinessLogicTest
             dbResult.CategoryName.ShouldEqual(name);
         }
 
+        [TestMethod]
         public void CategoryOperationTest_WhenDeletingCategoryWithValidRequest_Expect_CategoryToBeRemoved()
         {
+            var existingProducts = ProductHelper.FindTopProducts(2);
+
             var categoryToRemove = new Category
             {
                 Id = _categoryId,
+                Description = "Testing to see if can delete record",
+                Products = existingProducts
             };
 
             _sut.RemoveCategory(categoryToRemove);
@@ -112,14 +117,14 @@ namespace KMC.Northwind.Demo.Tests.Integration.BusinessLogicTest
         {
             var name = string.Format("UP_{0}", StringHelper.GenerateRandomNumber());
 
-            var dummyProducts = ProductHelper.FindTopProducts(2);
+            var existingProducts = ProductHelper.FindTopProducts(2);
 
             var categoryToUpdate = new Category
             {
                 Id = _categoryId,
                 Name = name,
                 Description = "Testing to see if can Update record",
-                Products = dummyProducts
+                Products = existingProducts
             };
 
             _sut.UpdateCategory(categoryToUpdate);

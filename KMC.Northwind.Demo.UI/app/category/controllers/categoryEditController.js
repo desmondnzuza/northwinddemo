@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    app.controller('categoryEditCtrl', ['$state', 'categoryToInspect', 'categoryService', function ($state, categoryToInspect, categoryService) {
+    app.controller('categoryEditCtrl', ['$state', 'categoryToInspect', 'categoryService', 'listManagementService', function ($state, categoryToInspect, categoryService, listManagementService) {
         var vm = this;
         vm.assignedProducts = categoryToInspect.products;
         vm.availableProducts = [];
@@ -12,17 +12,13 @@
 
         vm.save = function (isValid) {
             if (isValid) {
-                //debugger;
                 vm.selectedItem.products = vm.assignedProducts;
-
-                console.log('about to save');
-                console.log(vm.selectedItem);
 
                 categoryService.editCategory(vm.selectedItem)
                     .then(function (results) {
-                        toastr.success("Save Successful");
+                        toastr.success("Edit Successful");
                     }, function (err) {
-                        toastr.error("An error occured when trying to update set");
+                        toastr.error("An error occured when trying to edit category");
                     })
                     .finally(function () {
                         $state.go('categoryManager.list');
@@ -45,7 +41,7 @@
             for (var i = 0; i < selectedItems.length; i++) {
                 var itemToAdd = selectedItems[i];
 
-                if (!vm.itemExists(vm.assignedProducts, itemToAdd)) {
+                if (!listManagementService.itemExists(vm.assignedProducts, itemToAdd)) {
                     vm.assignedProducts.push(itemToAdd);
                 }
             }
@@ -57,29 +53,7 @@
             for (var i = selectedItems.length - 1; i > -1; i--) {
                 var itemToRemove = selectedItems[i];
 
-                vm.removeFromItems(vm.assignedProducts, itemToRemove);
-            }
-        };
-
-        vm.itemExists = function (itemsList, itemToFind) {
-            for (var i = itemsList.length - 1; i > -1; i--) {
-                var currentItem = itemsList[i];
-
-                if (angular.equals(currentItem, itemToFind)) {
-                    return true;
-                }
-            }
-
-            return false;
-        };
-
-        vm.removeFromItems = function (itemsList, itemToRemove) {
-            for (var i = itemsList.length - 1; i > -1; i--) {
-                var currentItem = itemsList[i];
-
-                if (angular.equals(currentItem, itemToRemove)) {
-                    itemsList.splice(i, 1);
-                }
+                listManagementService.removeFromItems(vm.assignedProducts, itemToRemove);
             }
         };
        
