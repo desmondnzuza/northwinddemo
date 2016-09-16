@@ -4,6 +4,7 @@ var app = angular.module('app', [
     'highcharts-ng',
     'ui.bootstrap',
     'angularMoment',
+    'ui.grid'
 ]);
 
 app.value('$', $);

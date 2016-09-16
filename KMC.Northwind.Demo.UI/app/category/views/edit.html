@@ -1,2 +1,85 @@
-﻿<h1>edit</h1>
-category edit view says [{{vm.test}}]
+﻿<form class="form-horizontal" style="padding-top:10px; width:97%" name="categoryForm" ng-submit="vm.submitForm(categoryForm.$valid)" novalidate>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            Edit
+        </div>
+        <div class="panel-body">
+            <div class="form-group" ng-class="{ 'has-error' : categoryForm.categoryName.$invalid && !categoryForm.categoryName.$pristine }">
+                <label for="categoryName" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="categoryName" ng-model="vm.selectedItem.name" placeholder="Name (required)" />
+                    <p ng-show="categoryForm.categoryName.$invalid && !categoryForm.categoryName.$pristine" class="help-block">Name is required.</p>
+                </div>
+            </div> 
+            <div class="form-group" ng-class="{ 'has-error' : categoryForm.categoryName.$invalid && !categoryForm.categoryName.$pristine }">
+                <label for="categoryDescription" class="col-sm-2 control-label">Description</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="categoryDescription" ng-model="vm.selectedItem.description" placeholder="Description (required)" />
+                    <p ng-show="categoryForm.categoryDescription.$invalid && !categoryForm.categoryDescription.$pristine" class="help-block">Description is required.</p>
+                </div>
+            </div>           
+            <div class="form-group" ng-class="{ 'has-error' : (vm.assignedProducts && vm.assignedProducts.length === 0) }">
+                <label for="ruleSets" class="col-sm-2 control-label">Products</label>
+                <div class="col-sm-10">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Assigned</th>
+                                <th>&nbsp;</th>
+                                <th>Available</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td width="44%">
+                                <select class="form-control"
+                                        size="10"
+                                        name="assignedProducts"
+                                        id="assignedProducts"
+                                        multiple="multiple"
+                                        ng-options="product as product.name for product in vm.assignedProducts"
+                                        ng-model="vm.selectedAssignedProducts"></select>
+                            </td>
+                            <td width="2%">
+                                <div class="btn-group-vertical">
+                                    <button type="button"
+                                            class="btn btn-primary"
+                                            ng-click="vm.assignSelectedProducts()">
+                                        <<
+                                    </button>
+                                    <button type="button"
+                                            class="btn btn-primary"
+                                            ng-click="vm.removeAssignedProducts()">
+                                        >>
+                                    </button>
+                                </div>
+                            </td>
+                            <td width="44%">
+                                <select class="form-control"
+                                        size="10"
+                                        name="availabeProducts"
+                                        id="availabeProducts"
+                                        multiple="multiple"
+                                        ng-options="product as product.name for product in vm.availableProducts"
+                                        ng-model="vm.selectedAvailableProduct"></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <p ng-show="(vm.assignedProducts && vm.assignedProducts.length === 0)" class="help-block">Please assign at least one rule</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10 text-right">
+                    <button type="submit" class="btn btn-primary" ng-disabled="(vm.assignedProducts && vm.assignedProducts.length === 0) || (categoryForm.$invalid || categoryForm.$pristine)">Save</button>
+                    <button type="button" class="btn btn-warning" ng-click="vm.cancel()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

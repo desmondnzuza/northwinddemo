@@ -22,7 +22,8 @@ namespace KMC.Northwind.Demo.UI
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/ui-grid.min.css"));
 
             var prerequisiteBundle = new ScriptBundle("~/bundles/angularprerequisite").Include(
                 "~/assets/js/jquery-2.1.1.min.js",
@@ -37,7 +38,8 @@ namespace KMC.Northwind.Demo.UI
                 "~/assets/ui.bootstrap.custom/ui-bootstrap-custom-tpls-0.14.3.js",
                 "~/assets/js/toastr.js",
                 "~/assets/js/moment.js",
-                "~/assets/js/angular-moment.js"
+                "~/assets/js/angular-moment.js",
+                "~/assets/js/ui-grid.js"
                 );
 
             var chartsBundle = new ScriptBundle("~/bundles/charts").Include(

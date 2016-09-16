@@ -1,8 +1,11 @@
 ﻿(function () {
     'use strict';
 
-    app.controller('categoryEditCtrl', [function () {
+    app.controller('categoryEditCtrl', ['$state', function ($state) {
         var vm = this;
-        vm.test = "this is the edit category controller";
+
+        vm.cancel = function () {
+            $state.go('categoryManager.list');
+        };
     }]);
 })();
