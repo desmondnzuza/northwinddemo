@@ -10,8 +10,16 @@
          { name: 'name', displayName: 'Name' },
          { name: 'description', displayName: 'Description' },
          {
-             name: ' ',
-             cellTemplate: '<div><a class="btn btn-primary btn-xs" ui-sref="categoryManager.edit({ categoryId: {{row.entity.id}} })">Edit</a><a class="btn btn-danger btn-xs" ng-click="grid.appScope.deleteRow(row)"">Delete</a></div>',
+             name: 'Edit',
+             cellTemplate: '<div class="ui-grid-cell-contents"><a class="btn btn-primary btn-xs" href="#/category/edit/{{row.entity.id}}">Edit</a></div>',
+             enableSorting: false,
+             enableFiltering: false,
+             enableHiding: false,
+             enableColumnMenus: false
+         },
+         {
+             name: 'Delete',
+             cellTemplate: '<div class="ui-grid-cell-contents"><a class="btn btn-danger btn-xs" ng-click="grid.appScope.deleteRow(row)"">Delete</a></div>',
              enableSorting: false,
              enableFiltering: false,
              enableHiding: false,

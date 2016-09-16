@@ -51,7 +51,7 @@
         productService.createProduct = function (productToAdd) {
             var params = productToAdd;
 
-            return $http.post(serviceBaseUrl + "CreateProduct", params).then(function (results) {
+            return $http.post(serviceBaseUrl + "CreateCategory", params).then(function (results) {
                 return results;
             });
         };

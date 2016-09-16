@@ -14,6 +14,22 @@
         </div>
         <div class="panel-body">
             <div class="form-group">
+                <label for="productCategory" class="col-sm-2 control-label">Category</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="productCategory" ng-model="vm.selectedItem.categoryId" placeholder="category" />
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="productSupplier" class="col-sm-2 control-label">Supplier</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="productSupplier" ng-model="vm.selectedItem.supplierId" placeholder="Supplier" />
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
                 <label for="productQuantityPerUnit" class="col-sm-2 control-label">Quantity per Unit</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="productQuantityPerUnit" ng-model="vm.selectedItem.quantityPerUnit" placeholder="Quantity per Unit" />                    
@@ -56,7 +72,8 @@
             <div class="form-group">
                 <label for="productDiscontinued" class="col-sm-2 control-label">Discontinued</label>
                 <div class="col-sm-10">
-                    <input readonly type="text" class="form-control" name="productDiscontinued" ng-model="vm.selectedItem.discontinued" placeholder="" />
+                    <input type="checkbox" class="form-control" name="productDiscontinued" ng-model="vm.selectedItem.isDiscontinued" />
+                    <!--<input id="checkSlave" type="checkbox" ng-checked="master" aria-label="Slave input">-->
                 </div>
             </div>
         </div>
