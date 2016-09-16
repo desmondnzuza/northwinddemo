@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using KMC.Northwind.Demo.Core.Model;
+using KMC.Northwind.Demo.SQL.Repository.Helpers;
 using SQLPOCO = KMC.Northwind.Demo.SQL.Repository.POCO;
 using System.Data.Entity;
 
@@ -16,7 +17,18 @@ namespace KMC.Northwind.Demo.SQL.Repository
 
         public Supplier[] FindAll()
         {
-            throw new NotImplementedException();
+            using (var ctx = new SQLPOCO.NorthwindDbContext())
+            {
+                var dbResults = ctx.Suppliers
+                     .Include(x => x.Products)
+                     .ToArray();
+
+                var targetList = dbResults                    
+                      .Select(x => x.ToCoreModelSupplier())
+                      .ToArray();
+
+                return targetList;
+            }
         }
 
         public Supplier FindSupplierById(int supplierId)
