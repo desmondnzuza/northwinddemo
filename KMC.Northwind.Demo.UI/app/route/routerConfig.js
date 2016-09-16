@@ -53,12 +53,25 @@
             }
         })
         .state('categoryManager.edit', {
-            url: '/edit',
+            url: '/edit/:categoryId',
             views: {
                 '': {
                     templateUrl: '../app/category/views/edit.html',
                     controller: 'categoryEditCtrl as vm'
                 }
+            },
+            resolve: {
+                categoryToInspect: [
+                    //'categoryService',
+                    '$stateParams',
+                    function ($stateParams) { //(categoryService, $stateParams) {
+                        //var ruleSetId = $stateParams.rulesetId;
+                        //return rulesService.findRuleSetById(ruleSetId);
+                        var categoryId = $stateParams.categoryId;
+                        var dummy = {id: categoryId, name:"test"};
+                        return  dummy;
+                    }
+                ],
             }
         })
 
