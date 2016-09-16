@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="RepositoryTests\CategoryRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryTests\ProductRepositoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KMC.Northwind.Demo.Core\KMC.Northwind.Demo.Core.csproj">

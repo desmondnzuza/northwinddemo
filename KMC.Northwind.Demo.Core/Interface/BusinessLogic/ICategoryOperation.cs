@@ -5,6 +5,7 @@ namespace KMC.Northwind.Demo.Core.Interface.BusinessLogic
     public interface ICategoryOperation
     {
         Category[] FindCategories(SearchCriteria criteria);
+        Product[] FindAvailableProducts();
         Category FindCategoryById(int categoryId);
         void CreateCategory(Category newCategory);
         void UpdateCategory(Category categoryToUpdate);

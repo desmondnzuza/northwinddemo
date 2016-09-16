@@ -11,13 +11,18 @@ namespace KMC.Northwind.Demo.Tests.Unit.BusinessLogicTest
     public class CategoryOperationTest
     {
         private Mock<ICategoryRepository> _mockedCategoryRepository;
+        private Mock<IProductRepository> _mockedProductRepository;
         private ICategoryOperation _sut;
 
         [TestInitialize]
         public void SetUp()
         {
             _mockedCategoryRepository = new Mock<ICategoryRepository>();
-            _sut = new CategoryOperation(_mockedCategoryRepository.Object);
+            _mockedProductRepository = new Mock<IProductRepository>();
+
+            _sut = new CategoryOperation(
+                _mockedCategoryRepository.Object,
+                _mockedProductRepository.Object);
         }
 
         [TestMethod]
@@ -32,6 +37,14 @@ namespace KMC.Northwind.Demo.Tests.Unit.BusinessLogicTest
             _sut.FindCategories(criteria);
 
             _mockedCategoryRepository.Verify(r => r.FindCategories(criteria), Times.Once);
+        }
+
+        [TestMethod]
+        public void CategoryOperationTests_WhenFindingAvailableProducts_Expect_CallProductRepositoryFindAll_ToBeMade()
+        {
+            _sut.FindAvailableProducts();
+
+            _mockedProductRepository.Verify(r => r.FindAll(), Times.Once);
         }
 
         [TestMethod]

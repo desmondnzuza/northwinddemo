@@ -14,6 +14,7 @@
         };
 
         categoryService.findCategories = function (searchTerm) {
+            //TODO: make use of this when the time allows
             var criteria = {
                 searchTerm: "",
                 from: 0,
@@ -24,6 +25,14 @@
                 return results.data;
             });
         };
+
+        categoryService.findAvailableProducts = function () {
+
+            return $http.get(serviceBaseUrl + "FindAvailableCategories/").then(function (results) {
+                return results.data;
+            });
+        };
+
 
         return categoryService;
     }]);

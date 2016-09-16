@@ -20,6 +20,12 @@ namespace KMC.Northwind.Demo.API.Controllers
         }
 
         [HttpGet]
+        public Product[] FindAvailableCategories()
+        {
+            return _operation.FindAvailableProducts();
+        }
+
+        [HttpGet]
         public Category FindCategoryById(int categoryId)
         {
             return _operation.FindCategoryById(categoryId);
