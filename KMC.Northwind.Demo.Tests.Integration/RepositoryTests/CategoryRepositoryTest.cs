@@ -9,7 +9,7 @@ using Should;
 namespace KMC.Northwind.Demo.Tests.Integration.BusinessLogicTest
 {
     [TestClass]
-    public class CategoryOperationTest
+    public class CategoryReposirotyTest
     {
         private ICategoryRepository _sut;
         private string _randomName;
@@ -34,7 +34,7 @@ namespace KMC.Northwind.Demo.Tests.Integration.BusinessLogicTest
         }
 
         [TestMethod]
-        public void CategoryOperationTest_WhenFindingCategoriesWithValidRequest_Expect_Results()
+        public void CategoryReposirotyTest_WhenFindingCategoriesWithValidRequest_Expect_Results()
         {
             var criteria = new SearchCriteria
             {
@@ -49,7 +49,7 @@ namespace KMC.Northwind.Demo.Tests.Integration.BusinessLogicTest
         }
 
         [TestMethod]
-        public void CategoryOperationTest_WhenFindingCategoryByIdWithValidRequest_Expect_Results()
+        public void CategoryReposirotyTest_WhenFindingCategoryByIdWithValidRequest_Expect_Results()
         {
             var results = _sut.FindCategoryById(_categoryId);
 
@@ -57,7 +57,14 @@ namespace KMC.Northwind.Demo.Tests.Integration.BusinessLogicTest
         }
 
         [TestMethod]
-        public void CategoryOperationTest_WhenAddingCategoryWithValidRequest_Expect_NewCategoryToBeAdded()
+        public void CategoryRepositoryTests_WhenFindingAllCategories_Expect_Results()
+        {
+            var results = _sut.FindAll();
+            results.ShouldNotBeEmpty();
+        }
+
+        [TestMethod]
+        public void CategoryReposirotyTest_WhenAddingCategoryWithValidRequest_Expect_NewCategoryToBeAdded()
         {
             var name = string.Format("ADD_{0}", StringHelper.GenerateRandomNumber());
             var categoryToAdd = new Category
@@ -76,7 +83,7 @@ namespace KMC.Northwind.Demo.Tests.Integration.BusinessLogicTest
         }
 
         [TestMethod]
-        public void CategoryOperationTest_WhenUpdatingCategoryWithValidRequest_Expect_CategoryToBeUpdated()
+        public void CategoryReposirotyTest_WhenUpdatingCategoryWithValidRequest_Expect_CategoryToBeUpdated()
         {
             var name = string.Format("UP_{0}", StringHelper.GenerateRandomNumber());
             var categoryToUpdate = new Category
@@ -95,7 +102,7 @@ namespace KMC.Northwind.Demo.Tests.Integration.BusinessLogicTest
         }
 
         [TestMethod]
-        public void CategoryOperationTest_WhenDeletingCategoryWithValidRequest_Expect_CategoryToBeRemoved()
+        public void CategoryReposirotyTest_WhenDeletingCategoryWithValidRequest_Expect_CategoryToBeRemoved()
         {
             var existingProducts = ProductHelper.FindTopProducts(2);
 
@@ -113,7 +120,7 @@ namespace KMC.Northwind.Demo.Tests.Integration.BusinessLogicTest
         }
 
         [TestMethod]
-        public void CategoryOperationTest_WhenUpdatingCategoryAfterModifyingProducts_Expect_CategoryToHaveNewProducts()
+        public void CategoryReposirotyTest_WhenUpdatingCategoryAfterModifyingProducts_Expect_CategoryToHaveNewProducts()
         {
             var name = string.Format("UP_{0}", StringHelper.GenerateRandomNumber());
 

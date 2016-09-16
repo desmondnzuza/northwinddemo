@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builders\CategoryIdBuilder.cs" />
+    <Compile Include="Builders\ProductIdBuilder.cs" />
     <Compile Include="Helpers\CategoryHelper.cs" />
     <Compile Include="Helpers\ProductHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />

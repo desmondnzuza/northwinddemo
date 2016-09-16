@@ -1,5 +1,4 @@
-﻿using System;
-using KMC.Northwind.Demo.Core.Interface.BusinessLogic;
+﻿using KMC.Northwind.Demo.Core.Interface.BusinessLogic;
 using KMC.Northwind.Demo.Core.Interface.Repository;
 using KMC.Northwind.Demo.Core.Model;
 

@@ -13,8 +13,8 @@ namespace KMC.Northwind.Demo.Tests.Common.Helpers
                 var categoryToDelete = ctx.Categories.FirstOrDefault(c => c.CategoryId == categoryId);
                 if(categoryToDelete != null)
                 {
-                    foreach (var dbProduct in categoryToDelete.Products.ToArray())                        
-                        ctx.Products.Remove(dbProduct);
+                    foreach (var dbProduct in categoryToDelete.Products.ToArray())
+                        ctx.Entry<Product>(dbProduct).State = EntityState.Modified;
 
                     ctx.Categories.Remove(categoryToDelete);
                     ctx.SaveChanges();

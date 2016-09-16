@@ -1,10 +1,8 @@
 ﻿using KMC.Northwind.Demo.Core.Interface.Repository;
-using System;
-using System.Linq;
 using KMC.Northwind.Demo.Core.Model;
-using SQLPOCO = KMC.Northwind.Demo.SQL.Repository.POCO;
 using KMC.Northwind.Demo.SQL.Repository.Helpers;
-using System.Data.Entity;
+using System.Linq;
+using SQLPOCO = KMC.Northwind.Demo.SQL.Repository.POCO;
 
 namespace KMC.Northwind.Demo.SQL.Repository
 {
@@ -12,7 +10,13 @@ namespace KMC.Northwind.Demo.SQL.Repository
     {
         public void CreateProduct(Product newProduct)
         {
-            throw new NotImplementedException();
+            using (var ctx = new SQLPOCO.NorthwindDbContext())
+            {
+                var itemToAdd = newProduct.ToDbProduct();
+                ctx.Products.Add(itemToAdd);
+
+                ctx.SaveChanges();
+            }
         }
 
         public Product[] FindAll()
@@ -32,22 +36,67 @@ namespace KMC.Northwind.Demo.SQL.Repository
 
         public Product FindProductById(int productId)
         {
-            throw new NotImplementedException();
+            using (var ctx = new SQLPOCO.NorthwindDbContext())
+            {
+                var dbProduct = ctx.Products
+                    .FirstOrDefault(p => p.ProductId == productId);
+
+                if (dbProduct != null)
+                {
+                    return dbProduct.ToCoreModelProduct();
+                }
+            }
+
+            return null;
         }
 
         public Product[] FindProducts(SearchCriteria criteria)
         {
-            throw new NotImplementedException();
+            using (var ctx = new SQLPOCO.NorthwindDbContext())
+            {
+                var dbResults = ctx.Products
+                    .Where(p => 
+                          ( p.ProductName.Contains(criteria.SearchTerm) ||
+                            p.QuantityPerUnit.Contains(criteria.SearchTerm) || 
+                            criteria.SearchTerm == null))                       //TODO: handle this better
+                     .ToArray();
+
+                var targetList = dbResults
+                      .Select(x => x.ToCoreModelProduct())
+                      .ToArray();
+
+                return targetList;
+            }
         }
 
         public void RemoveProduct(Product productToRemove)
         {
-            throw new NotImplementedException();
+            using (var ctx = new SQLPOCO.NorthwindDbContext())
+            {
+                var categoryToDelete = ctx.Products
+                    .FirstOrDefault(c => c.ProductId == productToRemove.Id);
+
+                if (categoryToDelete != null)
+                {
+                    ctx.Products.Remove(categoryToDelete);
+                    ctx.SaveChanges();
+                }
+            }
         }
 
         public void UpdateProduct(Product productToUpdate)
         {
-            throw new NotImplementedException();
+            using (var ctx = new SQLPOCO.NorthwindDbContext())
+            {
+                var dbProduct = productToUpdate.ToDbProduct();
+
+                var dbFreshProduct = ctx.Products
+                       .Single(c => c.ProductId == dbProduct.ProductId);
+
+                ctx.Entry(dbFreshProduct).CurrentValues.SetValues(dbProduct);
+
+                ctx.SaveChanges();
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using SQLPOCO = KMC.Northwind.Demo.SQL.Repository.POCO;
+using System;
 
 namespace KMC.Northwind.Demo.SQL.Repository
 {
@@ -20,6 +21,20 @@ namespace KMC.Northwind.Demo.SQL.Repository
             }
         }
 
+        public Category[] FindAll()
+        {
+            using (var ctx = new SQLPOCO.NorthwindDbContext())
+            {
+                var dbResults = ctx.Categories
+                     .ToArray();
+
+                return dbResults
+                      .Select(x => x.ToCoreModelCategory())
+                      .ToArray();
+
+            }
+        }
+
         public Category[] FindCategories(SearchCriteria criteria)
         {
             using (var ctx = new SQLPOCO.NorthwindDbContext())
@@ -29,10 +44,9 @@ namespace KMC.Northwind.Demo.SQL.Repository
                     //.Take(10)
                     //.Skip(0)
                     .Where(c =>
-                        (c.CategoryName.Contains(criteria.SearchTerm) ||
-                            c.Description.Contains(criteria.SearchTerm
-                            ) || criteria.SearchTerm == null)               //TODO: handle this better
-                            )
+                          ( c.CategoryName.Contains(criteria.SearchTerm) ||
+                            c.Description.Contains(criteria.SearchTerm) || 
+                            criteria.SearchTerm == null))                       //TODO: handle this better
                      .ToArray();
 
                 return dbResults
@@ -47,8 +61,7 @@ namespace KMC.Northwind.Demo.SQL.Repository
             using (var ctx = new SQLPOCO.NorthwindDbContext())
             {
                 var dbCategory = ctx.Categories
-                    .Where(c => c.CategoryId == categoryId)
-                    .FirstOrDefault();
+                    .FirstOrDefault(c => c.CategoryId == categoryId);
 
                 if(dbCategory != null)
                 {

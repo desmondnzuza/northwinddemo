@@ -14,6 +14,11 @@ namespace KMC.Northwind.Demo.SQL.Repository
             throw new NotImplementedException();
         }
 
+        public Supplier[] FindAll()
+        {
+            throw new NotImplementedException();
+        }
+
         public Supplier FindSupplierById(int supplierId)
         {
             throw new NotImplementedException();
