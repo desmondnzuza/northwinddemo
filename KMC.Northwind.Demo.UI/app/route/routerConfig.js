@@ -118,7 +118,7 @@
                 }
             },
             resolve: {
-                categoryToInspect: [
+                productToInspect: [
                     'productService',
                     '$stateParams',
                     function (productService, $stateParams) {
@@ -166,7 +166,7 @@
                 }
             },
             resolve: {
-                categoryToInspect: [
+                supplierToInspect: [
                     'supplierService',
                     '$stateParams',
                     function (supplierService, $stateParams) {

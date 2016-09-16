@@ -1,2 +1,73 @@
-﻿<h1>edit</h1>
-product edit view says [{{vm.test}}]
+﻿<form class="form-horizontal" style="padding-top:10px; width:97%" name="productForm" ng-submit="vm.save(productForm.$valid)" novalidate>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            Edit
+        </div>
+        <div class="panel-body">
+            <div class="form-group" ng-class="{ 'has-error' : productForm.productName.$invalid && !productForm.productName.$pristine }">
+                <label for="productName" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="productName" ng-model="vm.selectedItem.name" placeholder="Name (required)" required />
+                    <p ng-show="productForm.productName.$invalid && !productForm.productName.$pristine" class="help-block">Name is required.</p>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="productQuantityPerUnit" class="col-sm-2 control-label">Quantity per Unit</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="productQuantityPerUnit" ng-model="vm.selectedItem.quantityPerUnit" placeholder="Quantity per Unit" />                    
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="productUnitPrice" class="col-sm-2 control-label">Unit Price</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="productUnitPrice" ng-model="vm.selectedItem.unitPrice" placeholder="Unit Price" />
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="productUnitsInStock" class="col-sm-2 control-label">Units in Stock</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="productUnitsInStock" ng-model="vm.selectedItem.unitsInStock" placeholder="Units in Stock" />
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="productUnitsOnOrder" class="col-sm-2 control-label">Units on Order</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="productUnitsOnOrder" ng-model="vm.selectedItem.unitsOnOrder" placeholder="Units on Order" />
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="productReorderLevel" class="col-sm-2 control-label">Reorder Level</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="productReorderLevel" ng-model="vm.selectedItem.reorderLevel" placeholder="Reorder Level" />
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="productDiscontinued" class="col-sm-2 control-label">Discontinued</label>
+                <div class="col-sm-10">
+                    <input readonly type="text" class="form-control" name="productDiscontinued" ng-model="vm.selectedItem.discontinued" placeholder="" />
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10 text-right">
+                    <button type="submit" class="btn btn-primary" ng-disabled="(productForm.$invalid || productForm.$pristine)">Save</button>
+                    <button type="button" class="btn btn-warning" ng-click="vm.cancel()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

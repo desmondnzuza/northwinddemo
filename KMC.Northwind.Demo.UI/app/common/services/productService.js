@@ -5,8 +5,8 @@
         var productService = {};
         var serviceBaseUrl = appServiceSettings.apiServiceBaseUri + "Product/";
 
-        productService.findProductById = function (categoryIdToUse) {
-            var params = { params: { categoryId: categoryIdToUse } };
+        productService.findProductById = function (productIdToUse) {
+            var params = { params: { productId: productIdToUse } };
 
             return $http.get(serviceBaseUrl + "FindProductById", params).then(function (results) {
                 return results.data;
@@ -40,24 +40,24 @@
             });
         };
 
-        productService.editProduct = function (categoryToUpdate) {
-            var params = categoryToUpdate;
+        productService.editProduct = function (productToUpdate) {
+            var params = productToUpdate;
 
             return $http.post(serviceBaseUrl + "UpdateProduct", params).then(function (results) {
                 return results;
             });
         };
 
-        productService.createProduct = function (categoryToAdd) {
-            var params = categoryToAdd;
+        productService.createProduct = function (productToAdd) {
+            var params = productToAdd;
 
             return $http.post(serviceBaseUrl + "CreateProduct", params).then(function (results) {
                 return results;
             });
         };
 
-        productService.removeProduct = function (categoryToDelete) {
-            var params = categoryToDelete;
+        productService.removeProduct = function (productToDelete) {
+            var params = productToDelete;
 
             return $http.post(serviceBaseUrl + "RemoveProduct", params).then(function (results) {
                 return results;
