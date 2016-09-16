@@ -1,2 +1,12 @@
-﻿<h1>list</h1>
-product list view says [{{vm.test}}]
+﻿<div style="text-align:right; width:100%">
+    <a class="btn btn-primary"
+       ui-sref="productManager.new()">
+        New
+    </a>
+</div>
+<div class="panel panel-info">
+    <div class="panel-body">
+        <div ui-grid="gridOptions">
+        </div>
+    </div>
+</div>

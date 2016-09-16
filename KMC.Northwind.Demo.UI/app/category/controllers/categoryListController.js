@@ -4,8 +4,6 @@
     app.controller('categoryListCtrl', ['$scope', 'categoryService', function ($scope, categoryService) {
         var vm = this;
 
-        vm.dummyData = 
-
         $scope.gridOptions = {};
 
         $scope.gridOptions.columnDefs = [

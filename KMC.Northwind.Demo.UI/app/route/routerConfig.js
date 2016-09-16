@@ -87,7 +87,7 @@
             views: {
                 '': {
                     templateUrl: '../app/product/views/list.html',
-                    controller: 'productCtrl as vm'
+                    controller: 'productListCtrl as vm'
                 }
             }
         })
@@ -96,7 +96,7 @@
             views: {
                 '': {
                     templateUrl: '../app/product/views/list.html',
-                    controller: 'productCtrl as vm'
+                    controller: 'productListCtrl as vm'
                 }
             }
         })
@@ -105,20 +105,29 @@
             views: {
                 '': {
                     templateUrl: '../app/product/views/new.html',
-                    controller: 'productCtrl as vm'
+                    controller: 'productNewCtrl as vm'
                 }
             }
         })
         .state('productManager.edit', {
-            url: '/edit',
+            url: '/edit/:productId',
             views: {
                 '': {
                     templateUrl: '../app/product/views/edit.html',
-                    controller: 'productCtrl as vm'
+                    controller: 'productEditCtrl as vm'
                 }
+            },
+            resolve: {
+                categoryToInspect: [
+                    'productService',
+                    '$stateParams',
+                    function (productService, $stateParams) {
+                        var productId = $stateParams.productId;
+                        return productService.findProductById(productId);
+                    }
+                ],
             }
-        }
-        )
+        })
 
         // supplier
         .state('supplierManager', {
@@ -135,7 +144,7 @@
             views: {
                 '': {
                     templateUrl: '../app/supplier/views/list.html',
-                    controller: 'supplierCtrl as vm'
+                    controller: 'supplierListCtrl as vm'
                 }
             }
         })
@@ -144,17 +153,27 @@
             views: {
                 '': {
                     templateUrl: '../app/supplier/views/new.html',
-                    controller: 'supplierCtrl as vm'
+                    controller: 'supplierNewCtrl as vm'
                 }
             }
         })
         .state('supplierManager.edit', {
-            url: '/edit',
+            url: '/edit/supplierId',
             views: {
                 '': {
                     templateUrl: '../app/supplier/views/edit.html',
-                    controller: 'supplierCtrl as vm'
+                    controller: 'supplierEditCtrl as vm'
                 }
+            },
+            resolve: {
+                categoryToInspect: [
+                    'supplierService',
+                    '$stateParams',
+                    function (supplierService, $stateParams) {
+                        var supplierId = $stateParams.supplierId;
+                        return supplierService.findSupplierById(supplierId);
+                    }
+                ],
             }
         })
 }]);

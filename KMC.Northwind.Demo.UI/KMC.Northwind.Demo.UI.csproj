@@ -264,6 +264,9 @@
     <Content Include="app\common\services\productService.js" />
     <Content Include="app\common\services\suppliertService.js" />
     <Content Include="app\product\controllers\productController.js" />
+    <Content Include="app\product\controllers\productEditController.js" />
+    <Content Include="app\product\controllers\productListController.js" />
+    <Content Include="app\product\controllers\productNewController.js" />
     <Content Include="app\product\views\edit.html" />
     <Content Include="app\product\views\list.html" />
     <Content Include="app\product\views\new.html" />
@@ -272,6 +275,9 @@
     <Content Include="app\report\views\ordersReport.html" />
     <Content Include="app\route\routerConfig.js" />
     <Content Include="app\supplier\controllers\supplierController.js" />
+    <Content Include="app\supplier\controllers\supplierEditController.js" />
+    <Content Include="app\supplier\controllers\supplierListController.js" />
+    <Content Include="app\supplier\controllers\supplierNewController.js" />
     <Content Include="app\supplier\views\edit.html" />
     <Content Include="app\supplier\views\list.html" />
     <Content Include="app\supplier\views\new.html" />
