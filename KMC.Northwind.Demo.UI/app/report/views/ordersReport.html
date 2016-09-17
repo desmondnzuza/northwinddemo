@@ -1,12 +1,25 @@
-﻿orders view says [{{vm.test}}]
-<div class="col-md-12">
-    <div class="col-md-6" type="comments">
-        <div style="border-left: 1px solid #888; border-bottom: 1px solid #888; margin-bottom: 10px;">
-            <div>
-                <div>
-                    <highchart id="ordersChart" config="vm.ordersConfig"></highchart>
+﻿<div>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            Orders Report
+        </div>
+        <div class="panel-body">
+            <div class="col-md-12" ng-if="vm.isDoneLoading">
+                <div class="col-md-6" type="comments">
+                    <div style="border-left: 1px solid #888; border-bottom: 1px solid #888; margin-bottom: 10px;">
+                        <div>
+                            <div>
+                                <highchart id="ordersChart" config="vm.ordersConfig"></highchart>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div ng-hide="vm.isDoneLoading">
+                loading...
+            </div>
+        </div>
+        <div class="panel-footer">
         </div>
     </div>
 </div>

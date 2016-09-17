@@ -3,6 +3,7 @@
 
     app.controller('ordersReportCtrl', [function () {
         var vm = this;
-        vm.test = "this is the reports controller";
+        vm.isDoneLoading = false;
+        vm.ordersConfig = {};
     }]);
 })();
