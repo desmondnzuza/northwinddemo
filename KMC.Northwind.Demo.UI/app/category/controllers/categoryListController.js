@@ -3,6 +3,7 @@
 
     app.controller('categoryListCtrl', ['$scope', 'categoryService', function ($scope, categoryService) {
         var vm = this;
+        vm.isDoneLoading = false;
 
         $scope.gridOptions = {};
 
@@ -45,8 +46,11 @@
         $scope.gridOptions.data = [];
 
         categoryService.findCategories('')
-        .then(function (results) {            
+        .then(function (results) {
+            vm.isDoneLoading = true;
             $scope.gridOptions.data = results;
+        }, function (err) {
+            toastr.error("An error occured when trying to load categories");
         });
 
     }]);

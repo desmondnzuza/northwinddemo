@@ -1,12 +1,17 @@
-﻿<div style="text-align:right; width:100%">
-    <a class="btn btn-primary"
-       ui-sref="supplierManager.new()">
-        New
-    </a>
-</div>
-<div class="panel panel-info">
-    <div class="panel-body">
-        <div class="gridStyle" ui-grid="gridOptions">
+﻿<div ng-show="vm.isDoneLoading">
+    <div style="text-align:right; width:100%">
+        <a class="btn btn-primary"
+           ui-sref="supplierManager.new()">
+            New
+        </a>
+    </div>
+    <div class="panel panel-info">
+        <div class="panel-body">
+            <div class="gridStyle" ui-grid="gridOptions">
+            </div>
         </div>
     </div>
+</div>
+<div ng-show="!vm.isDoneLoading">
+    loading...
 </div>

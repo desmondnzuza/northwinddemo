@@ -3,6 +3,7 @@
 
     app.controller('productListCtrl', ['$scope', 'productService', function ($scope, productService) {
         var vm = this;
+        vm.isDoneLoading = false;
 
         $scope.gridOptions = {};
 
@@ -48,7 +49,10 @@
 
         productService.findProducts('')
         .then(function (results) {
+            vm.isDoneLoading = true;
             $scope.gridOptions.data = results;
+        }, function (err) {
+            toastr.error("An error occured when trying to load products");
         });
 
     }]);

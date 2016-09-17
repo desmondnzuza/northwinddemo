@@ -3,6 +3,8 @@
 
     app.controller('supplierListCtrl', ['$scope', 'supplierService', function ($scope, supplierService) {
         var vm = this;
+        vm.isDoneLoading = false;
+
         $scope.gridOptions = {};
 
         $scope.gridOptions.columnDefs = [
@@ -48,7 +50,10 @@
 
         supplierService.findSuppliers('')
         .then(function (results) {
+            vm.isDoneLoading = true;
             $scope.gridOptions.data = results;
+        }, function (err) {
+            toastr.error("An error occured when trying to load suppliers");
         });
 
     }]);
