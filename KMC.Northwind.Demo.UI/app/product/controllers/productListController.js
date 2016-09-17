@@ -9,11 +9,7 @@
         $scope.gridOptions.columnDefs = [
          { name: 'id', displayName: 'ID' },
          { name: 'name', displayName: 'Product Name' },
-         { name: 'quantityPerUnit', displayName: 'Quantity per Unit' },
-         { name: 'unitPrice', displayName: 'Unit Price' },
-         { name: 'unitsInStock', displayName: 'Units in Stock' },
-         { name: 'unitsOnOrder', displayName: 'Units on Order' },
-         { name: 'reorderLevel', displayName: 'Reorder Level' },
+         { name: 'quantityPerUnit', displayName: 'Quantity per Unit' },         
          { name: 'isDiscontinued', displayName: 'Discontinued' },
          {
              name: 'Edit',
