@@ -104,8 +104,8 @@ namespace KMC.Northwind.Demo.SQL.Repository
                 ctx.Entry(dbFreshCategory).CurrentValues.SetValues(dbNewCategory);
 
                 foreach (var dbProduct in dbFreshCategory.Products.ToArray())
-                    if (!dbNewCategory.Products.Any(s => s.ProductId == dbProduct.ProductId))
-                        ctx.Products.Remove(dbProduct);
+                   if (!dbNewCategory.Products.Any(s => s.ProductId == dbProduct.ProductId))
+                       ctx.Products.Remove(dbProduct);
 
                 foreach (var newProduct in dbNewCategory.Products)
                 {
