@@ -1,4 +1,4 @@
-﻿<div ng-show="vm.isDoneLoading">
+﻿<div ng-if="vm.isDoneLoading">
     <div style="text-align:right; width:100%">
         <a class="btn btn-primary"
            ui-sref="productManager.new()">
@@ -13,6 +13,6 @@
     </div>
 </div>
 
-<div ng-show="!vm.isDoneLoading">
+<div ng-hide="vm.isDoneLoading">
     loading...
 </div>
