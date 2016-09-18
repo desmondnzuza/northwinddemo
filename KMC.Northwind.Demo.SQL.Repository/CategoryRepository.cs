@@ -1,11 +1,9 @@
 ﻿using KMC.Northwind.Demo.Core.Interface.Repository;
 using KMC.Northwind.Demo.Core.Model;
 using KMC.Northwind.Demo.SQL.Repository.Helpers;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using SQLPOCO = KMC.Northwind.Demo.SQL.Repository.POCO;
-using System;
 
 namespace KMC.Northwind.Demo.SQL.Repository
 {

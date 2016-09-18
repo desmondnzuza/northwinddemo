@@ -8,7 +8,7 @@ using Moq;
 namespace KMC.Northwind.Demo.Tests.Unit.BusinessLogicTest
 {
     [TestClass]
-    public class CategoryOperationTest
+    public class CategoryOperationTests
     {
         private Mock<ICategoryRepository> _mockedCategoryRepository;
         private Mock<IProductRepository> _mockedProductRepository;

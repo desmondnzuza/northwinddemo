@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    app.controller('categoryEditCtrl', ['$state', 'categoryToInspect', 'categoryService', 'listManagementService', function ($state, categoryToInspect, categoryService, listManagementService) {
+    app.controller('categoryEditCtrl', ['$state', 'categoryToInspect', 'categoryService', 'listManagementService', '$uibModal', function ($state, categoryToInspect, categoryService, listManagementService, $uibModal) {
         var vm = this;
         vm.assignedProducts = categoryToInspect.products;
         vm.availableProducts = [];
@@ -30,10 +30,27 @@
             $state.go('categoryManager.list');
         };
 
-        categoryService.findAvailableProducts()
-        .then(function (results) {
-            vm.availableProducts = results;
-        });
+        vm.showCreateProduct = function () {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: '../app/product/views/new.html',
+                controller: 'modalProductNewCtrl as vm',
+                size: 'lg',
+                resolve: {
+                    categoryId: function () {
+                        return vm.selectedItem.id;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (selectedItem) {
+                var itemToAdd = selectedItem;
+
+                if (!listManagementService.itemExists(vm.assignedProducts, itemToAdd)) {
+                    vm.assignedProducts.push(itemToAdd);
+                }
+            });
+        };
 
         vm.assignSelectedProducts = function () {
             var selectedItems = vm.selectedAvailableProducts;

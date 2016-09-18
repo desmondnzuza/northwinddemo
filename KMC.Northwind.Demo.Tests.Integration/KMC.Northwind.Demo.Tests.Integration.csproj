@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="RepositoryTests\CategoryRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryTests\OrderRepositoryTest.cs" />
     <Compile Include="RepositoryTests\ProductRepositoryTests.cs" />
     <Compile Include="RepositoryTests\SupplierRepositoryTests.cs" />
   </ItemGroup>

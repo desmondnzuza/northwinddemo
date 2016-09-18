@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    app.controller('supplierEditCtrl', ['$state', 'supplierToInspect', 'supplierService', 'listManagementService', function ($state, supplierToInspect, supplierService, listManagementService) {
+    app.controller('supplierEditCtrl', ['$state', 'supplierToInspect', 'supplierService', 'listManagementService', '$uibModal', function ($state, supplierToInspect, supplierService, listManagementService, $uibModal) {
         var vm = this;
 
         vm.assignedProducts = supplierToInspect.products;
@@ -29,6 +29,28 @@
 
         vm.cancel = function () {
             $state.go('supplierManager.list');
+        };
+
+        vm.showCreateProduct = function () {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: '../app/product/views/new.html',
+                controller: 'modalProductNewCtrl as vm',
+                size: 'lg',
+                resolve: {
+                    categoryId: function () {
+                        return vm.selectedItem.id;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (selectedItem) {
+                var itemToAdd = selectedItem;
+
+                if (!listManagementService.itemExists(vm.assignedProducts, itemToAdd)) {
+                    vm.assignedProducts.push(itemToAdd);
+                }
+            });
         };
 
         supplierService.findAvailableProducts()

@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryOperation.cs" />
+    <Compile Include="OrderOperation.cs" />
     <Compile Include="ProductOperation.cs" />
     <Compile Include="SupplierOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
