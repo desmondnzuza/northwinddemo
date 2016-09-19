@@ -1,4 +1,5 @@
-﻿using KMC.Northwind.Demo.BusinessLogic;
+﻿using System;
+using KMC.Northwind.Demo.BusinessLogic;
 using KMC.Northwind.Demo.Core.Interface.BusinessLogic;
 using KMC.Northwind.Demo.Core.Interface.Repository;
 using KMC.Northwind.Demo.Core.Model;
@@ -20,11 +21,13 @@ namespace KMC.Northwind.Demo.Tests.Unit.BusinessLogicTest
         {
             _mockedOrderRepository = new Mock<IOrderRepository>();
 
-            _dummyOrders = new Order[] 
+            _dummyOrders = new Order[]
             {
-                new Order(),
-                new Order(),
-                new Order(),
+                GenerateOrder(1, "ZA", "2000", "JHB"),
+                GenerateOrder(2, "ZA", "2001", "CPT"),
+                GenerateOrder(3, "ZA", "2001", "CPT"),
+                GenerateOrder(3, "USA", "001", "NY"),
+                GenerateOrder(3, "USA", "002", "CA"),
             };
 
             _mockedOrderRepository
@@ -32,6 +35,24 @@ namespace KMC.Northwind.Demo.Tests.Unit.BusinessLogicTest
                 .Returns(_dummyOrders);
 
             _sut = new OrderOperation(_mockedOrderRepository.Object);
+        }
+
+        private Order GenerateOrder(
+            int id, 
+            string country, 
+            string postalCode, 
+            string city)
+        {
+            return new Order
+            {
+                Id = id,
+                OrderDate = DateTime.Now.AddDays(-5),
+                RequiredDate = DateTime.Now.AddDays(1),
+                ShippedDate = DateTime.Now,
+                ShipCountry = country,
+                ShipPostalCode = postalCode,
+                ShiptCity = city               
+            };
         }
 
         [TestMethod]
@@ -48,6 +69,14 @@ namespace KMC.Northwind.Demo.Tests.Unit.BusinessLogicTest
            var results = _sut.FindOrdersBeingShiped();
 
             results.ShouldNotBeEmpty();
+        }
+
+        [TestMethod]
+        public void OrderOperationTests_WhenOrderComeFromTwoCountries_Expect_Count_ToBeTwo()
+        {
+            var results = _sut.FindOrdersBeingShiped();
+
+            results.Length.ShouldEqual(2);
         }
     }
 }

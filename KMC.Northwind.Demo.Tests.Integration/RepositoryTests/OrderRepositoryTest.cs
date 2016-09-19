@@ -2,6 +2,7 @@
 using KMC.Northwind.Demo.SQL.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
+using System.Linq;
 
 namespace KMC.Northwind.Demo.Tests.Integration.RepositoryTests
 {
@@ -15,12 +16,21 @@ namespace KMC.Northwind.Demo.Tests.Integration.RepositoryTests
         {
             _sut = new OrderRepository();
         }
+
         [TestMethod]
         public void OrderRepositoryTests_WhenFindingOrdersBeingShiped_Expect_Results()
         {
             var results = _sut.FindOrdersBeingShiped();
 
             results.ShouldNotBeEmpty();
+        }
+
+        [TestMethod]
+        public void OrderRepositoryTests_WhenFindingOrdersBeingShiped_Expect_ResultsToHaveShippedDate()
+        {
+            var results = _sut.FindOrdersBeingShiped();
+
+            results.All(r => r.ShippedDate.HasValue).ShouldBeTrue();
         }
     }
 

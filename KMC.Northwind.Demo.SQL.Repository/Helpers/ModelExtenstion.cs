@@ -112,5 +112,19 @@ namespace KMC.Northwind.Demo.SQL.Repository.Helpers
                                         new DbModel.Product[] { }
             };
         }
+
+        public static CoreModel.Order ToCoreModeOrder(this DbModel.Order order)
+        {
+            return new CoreModel.Order
+            {
+                Id = order.OrderId,
+                OrderDate = order.OrderDate,
+                RequiredDate = order.RequiredDate,
+                ShippedDate = order.ShippedDate,
+                ShipCountry = order.ShipCountry,
+                ShipPostalCode = order.ShipPostalCode,
+                ShiptCity = order.ShipCity
+            };
+        }
     }
 }

@@ -5,7 +5,7 @@
         var vm = this;
         vm.isDoneLoading = true;
 
-        var countries = { all: 'France, Germany, Russia, South America, South Africa, London' };
+        var countries = { all: 'France, Germany, South Africa, United States of America, London' };
         var defaultSeriesData = {
                 allAreas: false,
                 name: '',
@@ -45,7 +45,8 @@
             angular.forEach(list, function (country) {
                 data.push({
                     name: country.replace(/^\s+|\s+$/, ''),
-                    value: 1
+                    value: 1,
+                    drilldown: true
                 });
             });
 
@@ -71,13 +72,53 @@
                         joinBy: ['name']
                     }
                 },
+                mapNavigation: {
+                    enabled: true,
+                    buttonOptions: {
+                        verticalAlign: 'bottom'
+                    }
+                },
+                colorAxis: {
+                    min: 0,
+                    minColor: '#E6E7E8',
+                    maxColor: '#005645'
+                },
+                drilldown: {
+                    series: []
+                },
             },
             chartType: 'map',
             title: {
                 text: 'Orders being shipped'
             },
+            subtitle: {
+                text: 'World',
+                floating: true,
+                align: 'right',
+                y: 50,
+                style: {
+                    fontSize: '16px'
+                }
+            },
+
+            legend:  {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+
+            
+            plotOptions: {
+                map: {
+                    states: {
+                        hover: {
+                            color: '#EEDD66'
+                        }
+                    }
+                }
+            },
             series: [
-                this.makeSeries('all', countries.all)
+                this.makeSeries('shipping orders', countries.all)
             ]
         };
 

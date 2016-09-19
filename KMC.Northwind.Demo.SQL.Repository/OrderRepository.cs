@@ -2,6 +2,7 @@
 using KMC.Northwind.Demo.Core.Model;
 using SQLPOCO = KMC.Northwind.Demo.SQL.Repository.POCO;
 using System.Linq;
+using KMC.Northwind.Demo.SQL.Repository.Helpers;
 
 namespace KMC.Northwind.Demo.SQL.Repository
 {
@@ -12,10 +13,11 @@ namespace KMC.Northwind.Demo.SQL.Repository
             using (var ctx = new SQLPOCO.NorthwindDbContext())
             {
                 var dbResults = ctx.Orders
-                     .ToArray();
+                    .Where(o => o.ShippedDate.HasValue)
+                    .ToArray();
 
                 return dbResults
-                      .Select(x => new Order())
+                      .Select(x => x.ToCoreModeOrder())
                       .ToArray();
             }
         }

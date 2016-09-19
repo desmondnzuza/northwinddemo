@@ -2,6 +2,7 @@
 using KMC.Northwind.Demo.Core.Interface.Repository;
 using KMC.Northwind.Demo.Core.Model;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace KMC.Northwind.Demo.BusinessLogic
 {
@@ -15,18 +16,25 @@ namespace KMC.Northwind.Demo.BusinessLogic
 
         public OrderStat[] FindOrdersBeingShiped()
         {
-            var results = new List<OrderStat>();
+            var results = new OrderStat[] { };
             var orders = _repo.FindOrdersBeingShiped();
 
-            //TODO: group results by location
-            //each location makes up a stat item
-            //include totals
-            foreach (var order in orders)
-            {
-                results.Add(new OrderStat());
-            }
-
-            return results.ToArray();
+            return orders
+                .OrderBy(x => x.ShipCountry)
+                .GroupBy(x => x.ShipCountry)
+                .Select(g => new OrderStat
+                {
+                    Title = g.Key,
+                    Total = g.Count(),
+                    OrderStats = g
+                    .OrderBy(x => x.ShipPostalCode)
+                    .GroupBy(x => x.ShipPostalCode)
+                    .Select(x => new OrderStat
+                    {
+                        Title = x.Key,                        
+                        Total = x.Count()
+                    }).ToArray()
+                }).ToArray();
         }
     }
 }
