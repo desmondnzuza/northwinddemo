@@ -1,9 +1,10 @@
 ﻿(function () {
     'use strict';
 
-    app.controller('ordersReportCtrl', [function () {
+    app.controller('ordersReportCtrl', ['orderService', function (orderService) {
         var vm = this;
         vm.isDoneLoading = true;
+        vm.shippedOrdersStats = [];
 
         var countries = { all: 'France, Germany, South Africa, United States of America, London' };
         var defaultSeriesData = {
@@ -123,5 +124,15 @@
         };
 
         this.config.series[0].allAreas = true;
+
+
+        orderService.findOrdersBeingShipped()
+        .then(function (results) {
+            vm.shippedOrdersStats = results;
+            console.log('found results');
+            console.log(results);
+        });
+
+
     }]);
 })();

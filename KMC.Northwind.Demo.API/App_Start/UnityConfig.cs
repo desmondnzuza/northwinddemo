@@ -17,10 +17,12 @@ namespace KMC.Northwind.Demo.API
             container.RegisterType<ICategoryRepository, CategoryRepository>();
             container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<ISupplierRepository, SupplierRepository>();
+            container.RegisterType<IOrderRepository, OrderRepository>();
 
             container.RegisterType<ICategoryOperation, CategoryOperation>();
             container.RegisterType<IProductOperation, ProductOperation>();
             container.RegisterType<ISupplierOperation, SupplierOperation>();
+            container.RegisterType<IOrderOperation, OrderOperation>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
