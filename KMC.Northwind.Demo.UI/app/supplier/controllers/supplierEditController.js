@@ -22,7 +22,7 @@
                         toastr.error("An error occured when trying to edit supplier");
                     })
                     .finally(function () {
-                        $state.go('categoryManager.list');
+                        $state.go('supplierManager.list');
                     });
             }
         };

@@ -46,6 +46,8 @@ namespace KMC.Northwind.Demo.UI
             var chartsBundle = new ScriptBundle("~/bundles/charts").Include(
                "~/assets/js/highcharts.min.js",
                "~/assets/js/drilldown.min.js",
+               "~/assets/js/highcharts-map.js",
+               "~/assets/js/highcharts-world.js",
                "~/app/common/directives/highcharts-ng.js"
                );
 

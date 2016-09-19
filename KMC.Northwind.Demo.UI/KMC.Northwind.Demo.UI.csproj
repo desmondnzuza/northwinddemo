@@ -287,11 +287,14 @@
     <Content Include="assets\js\angular-moment.js" />
     <Content Include="assets\js\drilldown.min.js" />
     <Content Include="assets\js\highcharts.min.js" />
+    <Content Include="assets\js\highcharts-index.js" />
     <Content Include="assets\js\jquery-2.1.1.min.js" />
     <Content Include="assets\js\jquery.signalR.min.js" />
+    <Content Include="assets\js\highcharts-map.js" />
     <Content Include="assets\js\moment.js" />
     <Content Include="assets\js\toastr.js" />
     <Content Include="assets\js\ui-grid.js" />
+    <Content Include="assets\js\highcharts-world.js" />
     <Content Include="assets\ui.bootstrap.custom\ui-bootstrap-custom-0.14.3.js" />
     <Content Include="assets\ui.bootstrap.custom\ui-bootstrap-custom-0.14.3.min.js" />
     <Content Include="assets\ui.bootstrap.custom\ui-bootstrap-custom-tpls-0.14.3.js" />

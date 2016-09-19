@@ -6,7 +6,7 @@
             redirectTo: 'report'
         })        
         .state('report', {
-            url: '/report',
+            url: '/report/orders',
             views: {
                 '': {
                     templateUrl: '../app/report/views/ordersReport.html',

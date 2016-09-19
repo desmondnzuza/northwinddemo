@@ -16,6 +16,7 @@
                         toastr.error("An error occured when trying to edit product");
                     })
                     .finally(function () {
+                        debugger;
                         $state.go('productManager.list');
                     });
             }
