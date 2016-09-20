@@ -4,7 +4,6 @@ using Microsoft.AspNet.SignalR;
 using Microsoft.Owin;
 using Newtonsoft.Json;
 using Owin;
-using Microsoft.Owin.Cors;
 using System.Threading.Tasks;
 
 [assembly: OwinStartup(typeof(KMC.Northwind.Demo.API.Startup))]
@@ -15,7 +14,6 @@ namespace KMC.Northwind.Demo.API
     {
         public void Configuration(IAppBuilder app)
         {
-            app.UseCors(CorsOptions.AllowAll);
             var settings = new JsonSerializerSettings();
             settings.ContractResolver = new SignalRContractResolver();
             var serializer = JsonSerializer.Create(settings);
@@ -25,7 +23,7 @@ namespace KMC.Northwind.Demo.API
             hubConfiguration.EnableDetailedErrors = true;
             app.MapSignalR(hubConfiguration);
 
-            var statsEngine = new OrdersBeingShippedEngine(800);
+            OrdersBeingShippedEngine statsEngine = new OrdersBeingShippedEngine(800);
             Task.Factory.StartNew(async () => await statsEngine.OnStatsMonitor());
         }
     }
