@@ -7,7 +7,6 @@ using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 
 namespace KMC.Northwind.Demo.API.Engine
 {

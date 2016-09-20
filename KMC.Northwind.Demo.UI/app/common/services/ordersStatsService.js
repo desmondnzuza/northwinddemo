@@ -8,13 +8,13 @@
                 connect: function () {
                     var backendServerUrl = appServiceSettings.statsServiceUrl;
                     connection = $.hubConnection(backendServerUrl);
-                    connection.logging = true;
+                    connection.logging = false;
                     proxy = connection.createHubProxy('ordersBeingShippedHub');
                     
                     proxy.on('broadcastOrderStats', function (note) {
                         $rootScope.$broadcast('broadcastOrderStats', note);
                     });
-                    debugger;
+
                     connection.start();
                 },
                 isConnecting: function () {
