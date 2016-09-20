@@ -286,6 +286,25 @@
     <Content Include="app\supplier\views\new.html" />
     <Content Include="app\supplier\views\supplierMain.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="tests\jasmine-test\common\common.js" />
+    <Content Include="tests\jasmine-test\lib\angular\angular.mock.js" />
+    <Content Include="tests\jasmine-test\lib\jasmine-2.3.4\boot.js" />
+    <Content Include="tests\jasmine-test\lib\jasmine-2.3.4\console.js" />
+    <Content Include="tests\jasmine-test\lib\jasmine-2.3.4\jasmine-html.js" />
+    <Content Include="tests\jasmine-test\lib\jasmine-2.3.4\jasmine.css" />
+    <Content Include="tests\jasmine-test\lib\jasmine-2.3.4\jasmine.js" />
+    <Content Include="tests\jasmine-test\lib\jasmine-2.3.4\jasmine_favicon.png" />
+    <Content Include="tests\jasmine-test\SpecRunner.html" />
+    <Content Include="tests\jasmine-test\spec\controller\category\category.controller.spec.js" />
+    <Content Include="tests\jasmine-test\spec\controller\category\categoryEdit.controller.spec.js" />
+    <Content Include="tests\jasmine-test\spec\controller\category\categoryList.controller.spec.js" />
+    <Content Include="tests\jasmine-test\spec\controller\category\categoryNew.controller.spec.js" />
+    <Content Include="tests\jasmine-test\spec\controller\order\order.controller.spec.js" />
+    <Content Include="tests\jasmine-test\spec\controller\product\product.controller.spec.js" />
+    <Content Include="tests\jasmine-test\spec\controller\supplier\supplier.controller.spec.js" />
+    <Content Include="tests\jasmine-test\spec\service\category.service.spec.js" />
+    <Content Include="tests\jasmine-test\spec\service\product.service.spec.js" />
+    <Content Include="tests\jasmine-test\spec\service\supplier.service.spec.js" />
     <Content Include="assets\js\angular-moment.js" />
     <Content Include="assets\js\drilldown.min.js" />
     <Content Include="assets\js\highcharts.min.js" />
@@ -346,6 +365,7 @@
     <Content Include="Content\ui-grid.woff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="tests\jasmine-test\spec\service\order.service.spec.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
