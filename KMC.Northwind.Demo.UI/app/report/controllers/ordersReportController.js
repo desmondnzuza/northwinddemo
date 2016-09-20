@@ -6,7 +6,7 @@
         vm.isDoneLoading = false;
         vm.shippedOrdersStats = [];
 
-        var countries = { all: 'Germany, Brazil, Switzerland, Austria' };
+        var countries = { all: '' };
         var defaultSeriesData = {
                 allAreas: false,
                 name: '',
@@ -24,11 +24,11 @@
                 tooltip: {
                     enabled: true,
                     headerFormat: '',
-                    pointFormat: '{point.name}: <b>100</b>'
+                    pointFormat: '{point.name}: {point.y}'
                 }
             };
 
-        this.makeSeries = function (name, countries) {
+        vm.makeSeries = function (name, countries) {
             var seriesData = angular.copy(defaultSeriesData);
 
             seriesData.name = name;
@@ -38,7 +38,7 @@
             return seriesData;
         };
 
-        this.makeSeriesData = function (string) {
+        vm.makeSeriesData = function (string) {
             var list = ('' + string).split(','),
                 data = []
             ;
@@ -54,18 +54,23 @@
             return data;
         };
 
-        this.setSeriesData = function (series, string) {
-            series.data = this.makeSeriesData(string);
-        };
-
-        this.addSeries = function () {
-            this.config.series.push(this.makeSeries());
-        };
-
-        this.config = {
+        vm.config = {
             options: {
                 legend: {
                     enabled: false
+                },
+                colorAxis: {
+                    min: 0,
+                    stops: [
+                        [0, '#EFEFFF'],
+                        [0.5, Highcharts.getOptions().colors[0]],
+                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).brighten(-0.5).get()]
+                    ]
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'left',
+                    verticalAlign: 'bottom'
                 },
                 plotOptions: {
                     map: {
@@ -76,7 +81,7 @@
                 mapNavigation: {
                     enabled: true,
                     buttonOptions: {
-                        verticalAlign: 'bottom'
+                        verticalAlign: 'top'
                     }
                 },
                 colorAxis: {
@@ -123,29 +128,22 @@
             ]
         };
 
-        this.config.series[0].allAreas = true;
+        vm.config.series[0].allAreas = true;
 
 
         orderService.findOrdersBeingShipped()
         .then(function (results) {
-            vm.shippedOrdersStats = results;
-            console.log('found results');
-            console.log(results);
+            var newSeriesData = vm.toDataPoints(results);
+            vm.config.series[0].data = newSeriesData;
+
             vm.isDoneLoading = true;
 
             orderStatsService.connect();
         });
 
-        var updateStats = function (newData) {
-            /*vm.currentCategory = findCategoryName(newData, vm.currentCategory.name);
-
-            var newSeriesData = highChartsService.toConfig(vm.currentCategory);
-            var newConsolidatedSeriesData = highChartsService.toStackedConfig(vm.currentCategory);
-
-            vm.config.series[0].data = newSeriesData.series[0].data;
-            vm.consolidatedConfig.series[0].data = newConsolidatedSeriesData.series[0].data;*/
-            console.log('new data');
-            console.log(newData);
+        var updateStats = function (newData) {            
+            var newSeriesData = vm.toDataPoints(newData);
+            vm.config.series[0].data = newSeriesData;
         }
 
         //orderStatsService.connect();
@@ -155,6 +153,33 @@
             updateStats(data);
             $scope.$apply();
         });
+
+        vm.toDataPoints = function (stats) {
+            var dataPoints = new Array();
+
+            for (var i = 0; i < stats.length; ++i) {
+                var stat = stats[i];
+
+                //hack due to the fact that USA does not work with highcharts yet.
+                var title = stat.title;
+                if (title === "USA")
+                {
+                    title = "United States Of America";
+                }
+
+                var itemToAdd =
+                    {
+                        name: title,
+                        y: stat.total,
+                        drilldown: false,
+                        visible: true,
+                    };
+
+                dataPoints.push(itemToAdd);
+            }
+
+            return dataPoints;
+        };
 
 
     }]);
