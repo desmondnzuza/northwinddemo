@@ -1,12 +1,12 @@
 ﻿(function () {
     'use strict';
 
-    app.controller('ordersReportCtrl', ['orderService', function (orderService) {
+    app.controller('ordersReportCtrl', ['orderService', 'orderStatsService', '$scope', function (orderService, orderStatsService, $scope) {
         var vm = this;
-        vm.isDoneLoading = true;
+        vm.isDoneLoading = false;
         vm.shippedOrdersStats = [];
 
-        var countries = { all: 'France, Germany, South Africa, United States of America, London' };
+        var countries = { all: 'Germany, Brazil, Switzerland, Austria' };
         var defaultSeriesData = {
                 allAreas: false,
                 name: '',
@@ -131,6 +131,29 @@
             vm.shippedOrdersStats = results;
             console.log('found results');
             console.log(results);
+            vm.isDoneLoading = true;
+
+            orderStatsService.connect();
+        });
+
+        var updateStats = function (newData) {
+            /*vm.currentCategory = findCategoryName(newData, vm.currentCategory.name);
+
+            var newSeriesData = highChartsService.toConfig(vm.currentCategory);
+            var newConsolidatedSeriesData = highChartsService.toStackedConfig(vm.currentCategory);
+
+            vm.config.series[0].data = newSeriesData.series[0].data;
+            vm.consolidatedConfig.series[0].data = newConsolidatedSeriesData.series[0].data;*/
+            console.log('new data');
+            console.log(newData);
+        }
+
+        //orderStatsService.connect();
+        vm.stats = $scope.stats;
+
+        $scope.$on('broadcastOrderStats', function (event, data) {
+            updateStats(data);
+            $scope.$apply();
         });
 
 

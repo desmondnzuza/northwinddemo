@@ -262,6 +262,7 @@
     <Content Include="app\common\services\categoryService.js" />
     <Content Include="app\common\services\listManagementService.js" />
     <Content Include="app\common\services\orderService.js" />
+    <Content Include="app\common\services\ordersStatsService.js" />
     <Content Include="app\common\services\productService.js" />
     <Content Include="app\common\services\suppliertService.js" />
     <Content Include="app\product\controllers\modalProductNewController.js" />

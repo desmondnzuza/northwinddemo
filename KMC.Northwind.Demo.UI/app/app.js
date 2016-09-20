@@ -10,7 +10,8 @@ var app = angular.module('app', [
 app.value('$', $);
 
 app.constant('appServiceSettings', {
-    apiServiceBaseUri: apiUrl
+    apiServiceBaseUri: apiUrl + 'api/',
+    statsServiceUrl: 'http://localhost:59192',//apiUrl
 });
 
 app.config(['$httpProvider', function ($httpProvider) {
