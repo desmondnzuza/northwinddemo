@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    app.factory('categoryService', ['$http', 'appServiceSettings', function ($http, appServiceSettings) {
+    app.factory('categoryService', ['$http', 'appServiceSettings', function ($http, appServiceSettings) {        
         var categoryService = {};
         var serviceBaseUrl = appServiceSettings.apiServiceBaseUri + "Category/";
 

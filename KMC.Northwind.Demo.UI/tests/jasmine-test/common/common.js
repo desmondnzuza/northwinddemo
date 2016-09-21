@@ -1,4 +1,4 @@
-﻿var apiUrl = 'http://localhost:59192/api/';
+﻿var apiUrl = 'http://localhost:59192/';
 var appName = 'app';
 
 var failTest = function (error) {

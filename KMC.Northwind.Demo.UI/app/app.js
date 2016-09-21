@@ -11,7 +11,7 @@ app.value('$', $);
 
 app.constant('appServiceSettings', {
     apiServiceBaseUri: apiUrl + 'api/',
-    statsServiceUrl: 'http://localhost:59192',//apiUrl
+    statsServiceUrl: apiUrl
 });
 
 app.config(['$httpProvider', function ($httpProvider) {
